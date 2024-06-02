@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Green Groceries{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bundle.css') }}">
+
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+{% include 'components/navbar.html' %}
+<main>
+    {% block content %}
+        {# TODO: dont show this unless user.is_superuser #}
+        <p>
+            This is the base template that includes required css and should be extended
+            by all other templates to keep code DRY
+        </p>
+    {% endblock %}
+</main>
+{% include 'components/footer.html' %}
+{% block js %}
+{% endblock %}
+</body>
+</html>

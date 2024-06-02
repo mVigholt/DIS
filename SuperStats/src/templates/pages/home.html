@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% from "components/macros.html" import cta_button %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="home">
+        <section class="home__hero">
+            <div class="hero__left">
+                <h1>
+                    Find the best fruits & vegetables for your meals!
+                </h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse iusto
+                    maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                </p>
+
+                {{ cta_button('btn--large') }}
+
+            </div>
+            <div class="hero__right">
+                <img src="{{ url_for('static', filename='images/superliga-danmark.png') }}" alt="hero" class="hero__img">
+            </div>
+        </section>
+
+        <section class="home__info">
+            <h2 class="home__title">
+                The best solution for getting fresh produce
+            </h2>
+            <div>
+                <div class="info__text">
+                    <h3>Lorem</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        <br><br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium debitis ex ipsam neque,
+                        odio ratione sunt totam unde? Dolorem et quibusdam quos similique veritatis! Dolorem eligendi
+                        enim incidunt porro quaerat!
+
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='images/produce1.jpg') }}" alt="produce">
+            </div>
+            <div>
+                <div class="info__text">
+                    <h3>Lorem</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        <br><br>
+
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, dolorum.
+
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='images/produce2.jpg') }}" alt="produce">
+            </div>
+            <div>
+                <div class="info__text">
+                    <h3>Lorem</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        <br>
+
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='images/produce3.jpg') }}" alt="produce">
+            </div>
+
+            <h2 class="home__title">
+                Come shop with us
+            </h2>
+            <div>
+                <div class="info__text">
+                    <h3>Lorem</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                        <br>
+
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                        iusto
+                        maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+
+                    </p>
+
+                    {{ cta_button('btn--large') }}
+                </div>
+                <img src="{{ url_for('static', filename='images/produce4.jpg') }}" alt="produce">
+            </div>
+        </section>
+    </div>
+{% endblock %}

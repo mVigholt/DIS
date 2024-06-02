@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% from "components/macros.html" import form_errors %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="form-wrapper">
+        <h1>Sign up</h1>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.full_name.label }}
+                {{ form.full_name }}
+
+                {{ form_errors(form.full_name.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.user_name.label }}
+                {{ form.user_name }}
+
+                {{ form_errors(form.user_name.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password }}
+
+                {{ form_errors(form.password.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password_repeat.label }}
+                {{ form.password_repeat }}
+
+                {{ form_errors(form.password_repeat.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.user_type.label }}
+                {{ form.user_type }}
+
+                {{ form_errors(form.user_type.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn--full") }}
+            </div>
+        </form>
+    </section>
+{% endblock %}

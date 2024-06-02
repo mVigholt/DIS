@@ -1,0 +1,22 @@
+.produce {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: var(--margin-md);
+}
+.card {
+    border: 1px solid var(--black);
+    border-radius: var(--border-radius);
+    padding: var(--margin-sm);
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.card__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__action {
+    display: grid;
+    place-items: center;
+}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% from 'components/macros.html' import select_field, filter_produce_form, produce_card %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/produce.css') }}">
+{% endblock %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h2>View and manage your produce</h2>
+    {{ filter_produce_form(form=form, sold_by=False) }}
+    <div class="produce">
+    {% if produce|length %}
+        {% for product in produce %}
+            {{ produce_card(product=product, show_checkout=False, show_restock=True) }}
+        {% endfor %}
+    {% else %}
+        <h3 class="text--gray">No produce to show at the moment.</h3>
+    {% endif %}
+    </div>
+{% endblock %}

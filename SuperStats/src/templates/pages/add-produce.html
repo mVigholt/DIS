@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% from "components/macros.html" import form_errors %}
+
+{% block title %}Add produce{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="form-wrapper">
+        <h1>Add produce</h1>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group" hidden>
+                {{ form.farmer_pk.label }}
+                {{ form.farmer_pk }}
+
+                {{ form_errors(form.farmer_pk.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.category.label }}
+                {{ form.category }}
+
+                {{ form_errors(form.category.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.item.label }}
+                {{ form.item }}
+
+                {{ form_errors(form.item.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.variety.label }}
+                {{ form.variety }}
+
+                {{ form_errors(form.variety.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.unit.label }}
+                {{ form.unit }}
+
+                {{ form_errors(form.unit.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.price.label }}
+                {{ form.price }}
+
+                {{ form_errors(form.price.errors) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn--full") }}
+            </div>
+        </form>
+    </section>
+{% endblock %}
