@@ -2,13 +2,15 @@ Create DB called "SuperStats" in pgAdmin
 
 Change password in .env: DB_PASSWORD = _Insert_your_password_here_
 
+
 In terminal:
-Intall python=3.10 in new environment
-Navigate to src folder
-pip install -r requirements.txt
-psql -d SuperStats -U postgres -h 127.0.0.1 -f utils\users.sql
-psql -d SuperStats -U postgres -h 127.0.0.1 -f utils\produce.sql
-flask run
+
+1. Intall python=3.10 in new environment
+1. Navigate to src folder
+1. pip install -r requirements.txt
+1. psql -d SuperStats -U postgres -h 127.0.0.1 -f utils\users.sql
+1. psql -d SuperStats -U postgres -h 127.0.0.1 -f utils\produce.sql
+1. flask run
 
 # Green Groceries
 
