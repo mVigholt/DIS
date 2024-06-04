@@ -43,9 +43,9 @@ if init in yes:
     )
     
     with conn2.cursor() as cursor:
-        cursor.execute(open('utils\\users.sql', "r").read())
-        cursor.execute(open('utils\\produce.sql', "r").read())
-        cursor.close()
+        cursor.execute(open('utils/users.sql',"r").read())
+        cursor.execute(open('utils/produce.sql',"r").read())
+    cursor.close()
     conn2.commit()
     conn2.close()
 

@@ -32,7 +32,7 @@ if __name__ == '__main__':
         # Dummy farmer 1 sells all produce
         dummy_sales = [(1, i) for i in range(1, len(all_produce) + 1)]
         args_str = ','.join(cur.mogrify("(%s, %s)", i).decode('utf-8') for i in dummy_sales)
-        cur.execute("INSERT INTO Sell (farmer_pk, produce_pk) VALUES " + args_str)
+        cur.execute("INSERT INTO Sell (manager_pk, produce_pk) VALUES " + args_str)
 
         conn.commit()
 

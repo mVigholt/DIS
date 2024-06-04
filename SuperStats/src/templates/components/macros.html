@@ -67,6 +67,25 @@
 {% endmacro %}
 
 
+{% macro search_player_form (form=None, player_name=True) %}
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form--row">
+            {% if player_name %}
+                <div class="form-group">
+                    {{ form.player_name.label }}
+                    {{ form.player_name }}
+                </div>
+            {% endif %}
+
+            {{ form.submit(class="btn") }}
+            <a href="{{ url_for('Produce.players') }}" class="btn">Clear</a>
+        </div>
+    </form>
+{% endmacro %}
+
+
 {% macro produce_card (product=None, show_checkout=True, show_restock=False, date=None) %}
     <div class="card">
         <div class="card__info">

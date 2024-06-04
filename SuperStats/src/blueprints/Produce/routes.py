@@ -1,11 +1,11 @@
 from flask import render_template, request, Blueprint
 from flask_login import login_required, current_user
 
-from src.forms import FilterProduceForm, AddProduceForm, BuyProduceForm, RestockProduceForm
+from src.forms import FilterProduceForm, AddProduceForm, BuyProduceForm, RestockProduceForm, SearchPlayerForm
 from src.models import Produce as ProduceModel, ProduceOrder
 from src.queries import insert_produce, get_produce_by_pk, Sell, \
     insert_sell, get_all_produce_by_manager, get_produce_by_filters, insert_produce_order, update_sell, \
-    get_orders_by_customer_pk
+    get_orders_by_customer_pk, get_player_by_name
 
 Produce = Blueprint('Produce', __name__)
 
@@ -23,6 +23,16 @@ def produce():
                                          price=request.form.get('price'))
         title = f'Our {request.form.get("category")}!'
     return render_template('pages/produce.html', produce=produce, form=form, title=title)
+
+@Produce.route("/players", methods=['GET', 'POST'])
+def players():
+    form = SearchPlayerForm()
+    title = 'All players!'
+    players = []
+    if request.method == 'POST':
+        players = get_player_by_name(player_name=request.form.get('player_name'))
+        title = f'Searching for playes...!'
+    return render_template('pages/players.html', players=players, form=form, title=title)
 
 
 @Produce.route("/add-produce", methods=['GET', 'POST'])
