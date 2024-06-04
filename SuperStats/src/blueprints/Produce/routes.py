@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from src.forms import FilterProduceForm, AddProduceForm, BuyProduceForm, RestockProduceForm, SearchPlayerForm
 from src.models import Produce as ProduceModel, ProduceOrder
 from src.queries import insert_produce, get_produce_by_pk, Sell, \
-    insert_sell, get_all_produce_by_farmer, get_produce_by_filters, insert_produce_order, update_sell, \
+    insert_sell, get_all_produce_by_manager, get_produce_by_filters, insert_produce_order, update_sell, \
     get_orders_by_customer_pk, get_player_by_name
 
 Produce = Blueprint('Produce', __name__)
@@ -19,7 +19,7 @@ def produce():
         produce = get_produce_by_filters(category=request.form.get('category'),
                                          item=request.form.get('item'),
                                          variety=request.form.get('variety'),
-                                         farmer_name=request.form.get('sold_by'),
+                                         manager_name=request.form.get('sold_by'),
                                          price=request.form.get('price'))
         title = f'Our {request.form.get("category")}!'
     return render_template('pages/produce.html', produce=produce, form=form, title=title)
@@ -38,7 +38,7 @@ def players():
 @Produce.route("/add-produce", methods=['GET', 'POST'])
 @login_required
 def add_produce():
-    form = AddProduceForm(data=dict(farmer_pk=current_user.pk))
+    form = AddProduceForm(data=dict(manager_pk=current_user.pk))
     if request.method == 'POST':
         if form.validate_on_submit():
             produce_data = dict(
@@ -50,7 +50,7 @@ def add_produce():
             )
             produce = ProduceModel(produce_data)
             new_produce_pk = insert_produce(produce)
-            sell = Sell(dict(farmer_pk=current_user.pk, produce_pk=new_produce_pk, available=True))
+            sell = Sell(dict(manager_pk=current_user.pk, produce_pk=new_produce_pk, available=True))
             insert_sell(sell)
     return render_template('pages/add-produce.html', form=form)
 
@@ -61,12 +61,12 @@ def your_produce():
     form = FilterProduceForm()
     produce = []
     if request.method == 'GET':
-        produce = get_all_produce_by_farmer(current_user.pk)
+        produce = get_all_produce_by_manager(current_user.pk)
     if request.method == 'POST':
         produce = get_produce_by_filters(category=request.form.get('category'),
                                          item=request.form.get('item'),
                                          variety=request.form.get('variety'),
-                                         farmer_pk=current_user.pk)
+                                         manager_pk=current_user.pk)
     return render_template('pages/your-produce.html', form=form, produce=produce)
 
 
@@ -78,12 +78,12 @@ def buy_produce(pk):
     if request.method == 'POST':
         if form.validate_on_submit():
             order = ProduceOrder(dict(produce_pk=produce.pk,
-                                      farmer_pk=produce.farmer_pk,
+                                      manager_pk=produce.manager_pk,
                                       customer_pk=current_user.pk))
             insert_produce_order(order)
             update_sell(available=False,
                         produce_pk=produce.pk,
-                        farmer_pk=produce.farmer_pk)
+                        manager_pk=produce.manager_pk)
     return render_template('pages/buy-produce.html', form=form, produce=produce)
 
 
@@ -96,7 +96,7 @@ def restock_produce(pk):
         if form.validate_on_submit():
             update_sell(available=True,
                         produce_pk=produce.pk,
-                        farmer_pk=produce.farmer_pk)
+                        manager_pk=produce.manager_pk)
     return render_template('pages/restock-produce.html', form=form, produce=produce)
 
 

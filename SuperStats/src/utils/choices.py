@@ -32,7 +32,20 @@ ProduceItemChoices = ModelChoices(df.item.unique())
 ProduceVarietyChoices = ModelChoices(df.variety.unique())
 ProduceUnitChoices = ModelChoices(df.unit.unique())
 
-UserTypeChoices = ModelChoices(['Farmer', 'Customer'])
+ClubChoices = ModelChoices([
+    "Brøndby IF",
+    "FC København",
+    "FC Midtjylland",
+    "FC Nordsjælland",
+    "AGF",
+    "Silkeborg IF",
+    "Randers FC",
+    "Viborg FF",
+    "OB",
+    "Lyngby",
+    "Vejle BK",
+    "Hvidovre IF"
+])
 
 if __name__ == '__main__':
     print(df.item.unique())

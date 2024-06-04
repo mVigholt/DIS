@@ -3,12 +3,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField, SelectField, FloatField
 from wtforms.validators import DataRequired, Length, ValidationError, NumberRange
 
-from src.queries import get_user_by_user_name, get_farmer_by_pk, get_customer_by_pk
-from src.utils.choices import ProduceItemChoices, ProduceCategoryChoices, UserTypeChoices, \
+from src.queries import get_user_by_user_name, get_manager_by_pk, get_customer_by_pk
+from src.utils.choices import ProduceItemChoices, ProduceCategoryChoices, ClubChoices, \
     ProduceVarietyChoices, ProduceUnitChoices
+#UserTypeChoices
 
-
-class UserLoginForm(FlaskForm):
+class ManagerLoginForm(FlaskForm):
     user_name = StringField('Username',
                             validators=[DataRequired(), Length(min=2, max=50)],
                             render_kw=dict(placeholder='Username'))
@@ -38,9 +38,9 @@ class UserSignupForm(FlaskForm):
     password_repeat = PasswordField('Repeat Password',
                                     validators=[DataRequired()],
                                     render_kw=dict(placeholder='Password'))
-    user_type = SelectField('User type',
+    club_name = SelectField('Club name',
                             validators=[DataRequired()],
-                            choices=UserTypeChoices.choices())
+                            choices=ClubChoices.values())
     submit = SubmitField('Sign up')
 
     def validate_user_name(self, field):
@@ -87,14 +87,14 @@ class AddProduceForm(FlaskForm):
                        choices=ProduceUnitChoices.choices())
     price = IntegerField('Price',
                          validators=[DataRequired(), NumberRange(min=0, max=100)])
-    farmer_pk = IntegerField('Farmer',
+    manager_pk = IntegerField('manager',
                              validators=[DataRequired()],
                              render_kw=dict(disabled='disabled'))
     submit = SubmitField('Add produce')
 
     def validate_price(self, field):
-        farmer = get_farmer_by_pk(self.farmer_pk.data)
-        if farmer is None:
+        manager = get_manager_by_pk(self.manager_pk.data)
+        if manager is None:
             raise ValidationError("You need to be a farmer to sell produce!")
 
 
