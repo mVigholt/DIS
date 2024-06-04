@@ -87,7 +87,7 @@ class AddProduceForm(FlaskForm):
                        choices=ProduceUnitChoices.choices())
     price = IntegerField('Price',
                          validators=[DataRequired(), NumberRange(min=0, max=100)])
-    manager_pk = IntegerField('manager',
+    manager_pk = IntegerField('Manager',
                              validators=[DataRequired()],
                              render_kw=dict(disabled='disabled'))
     submit = SubmitField('Add produce')

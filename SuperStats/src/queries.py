@@ -120,7 +120,7 @@ def get_player_by_name(player_name=None):
     SELECT * FROM vw_produce
     WHERE
     """
-    name = f"farmer_name LIKE '%{player_name}%'"
+    name = f"manager_name LIKE '%{player_name}%'"
 
     db_cursor.execute(sql + name)
     produce = [Produce(res) for res in db_cursor.fetchall()] if db_cursor.rowcount > 0 else []

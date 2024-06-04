@@ -72,7 +72,7 @@ class Sell(ModelMixin):
     def __init__(self, sell_data: Dict):
         super(Sell, self).__init__(sell_data)
         self.available = sell_data.get('available')
-        self.farmer_pk = sell_data.get('farmer_pk')
+        self.manager_pk = sell_data.get('manager_pk')
         self.produce_pk = sell_data.get('produce_pk')
 
 
