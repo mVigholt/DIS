@@ -1,10 +1,10 @@
 from flask import render_template, url_for, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user
 
-from src.forms import UserLoginForm, UserSignupForm
-from src.models import Farmer, Customer
-from src.queries import get_user_by_user_name, insert_farmer, insert_customer
-from src.utils.choices import UserTypeChoices
+from src.forms import ManagerLoginForm, UserSignupForm
+from src.models import Manager, Customer
+from src.queries import get_user_by_user_name, insert_manager, insert_customer
+from src.utils.choices import ClubChoices
 
 Login = Blueprint('Login', __name__)
 
@@ -29,7 +29,7 @@ def style_guide():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('Login.home'))
-    form = UserLoginForm()
+    form = ManagerLoginForm()
     if request.method == 'POST':
         if form.validate_on_submit():
             user = get_user_by_user_name(form.user_name.data)
@@ -50,12 +50,10 @@ def signup():
             user_data = dict(full_name=form.full_name.data,
                              user_name=form.user_name.data,
                              password=form.password.data)
-            if form.user_type.data == UserTypeChoices.values()[0]:
-                farmer = Farmer(user_data)
-                insert_farmer(farmer)
-            elif form.user_type.data == UserTypeChoices.values()[1]:
-                customer = Customer(form.data)
-                insert_customer(customer)
+            
+            manager = Manager(user_data)
+            insert_manager(manager)
+           
             user = get_user_by_user_name(form.user_name.data)
             if user:
                 login_user(user, remember=True)

@@ -1,3 +1,31 @@
+-- Drop the Users table if it exists, along with any dependent objects
+DROP TABLE IF EXISTS Managers CASCADE;
+
+-- Create the Managers table with the required fields
+CREATE TABLE IF NOT EXISTS Managers(
+    pk serial NOT NULL PRIMARY KEY,
+    user_name VARCHAR(50),
+    full_name VARCHAR(50),
+    password VARCHAR(50),
+    club_name VARCHAR(50)
+);
+
+-- Create an index on the Managers table
+CREATE INDEX IF NOT EXISTS managers_index
+ON Managers (pk);
+
+-- Delete all records from the Managers table
+DELETE FROM Managers;
+
+-- Insert a sample manager into the Managers table
+INSERT INTO Managers(full_name, club_name)
+VALUES ('Sample Manager', 'Sample Club');
+
+
+
+
+
+
 DROP TABLE IF EXISTS Users CASCADE;
 
 CREATE TABLE IF NOT EXISTS Users(

@@ -1,5 +1,5 @@
 from src import db_cursor, conn
-from src.models import User, Farmer, Customer, Produce, Sell, ProduceOrder
+from src.models import User, Manager, Customer, Produce, Sell, ProduceOrder
 
 
 # INSERT QUERIES
@@ -12,12 +12,12 @@ def insert_user(user: User):
     conn.commit()
 
 
-def insert_farmer(farmer: Farmer):
+def insert_manager(manager: Manager):
     sql = """
-    INSERT INTO Farmers(user_name, full_name, password)
-    VALUES (%s, %s, %s)
+    INSERT INTO Managers(user_name, full_name, password, club_name)
+    VALUES (%s, %s, %s, %s)
     """
-    db_cursor.execute(sql, (farmer.user_name, farmer.full_name, farmer.password))
+    db_cursor.execute(sql, (manager.user_name, manager.full_name, manager.password, manager.club_name))
     conn.commit()
 
 
@@ -48,21 +48,21 @@ def insert_produce(produce: Produce):
 
 def insert_sell(sell: Sell):
     sql = """
-    INSERT INTO Sell(farmer_pk, produce_pk)
+    INSERT INTO Sell(manager_pk, produce_pk)
     VALUES (%s, %s)
     """
-    db_cursor.execute(sql, (sell.farmer_pk, sell.produce_pk,))
+    db_cursor.execute(sql, (sell.manager_pk, sell.produce_pk,))
     conn.commit()
 
 
 def insert_produce_order(order: ProduceOrder):
     sql = """
-    INSERT INTO ProduceOrder(produce_pk, farmer_pk, customer_pk)
+    INSERT INTO ProduceOrder(produce_pk, Manager_pk, customer_pk)
     VALUES (%s, %s, %s)
     """
     db_cursor.execute(sql, (
         order.produce_pk,
-        order.farmer_pk,
+        order.manager_pk,
         order.customer_pk,
     ))
     conn.commit()
@@ -79,18 +79,18 @@ def get_user_by_pk(pk):
     return user
 
 
-def get_farmer_by_pk(pk):
+def get_manager_by_pk(pk):
     sql = """
-    SELECT * FROM Farmers
+    SELECT * FROM Managers
     WHERE pk = %s
     """
     db_cursor.execute(sql, (pk,))
-    farmer = Farmer(db_cursor.fetchone()) if db_cursor.rowcount > 0 else None
-    return farmer
+    manager = Manager(db_cursor.fetchone()) if db_cursor.rowcount > 0 else None
+    return manager
 
 
 def get_produce_by_filters(category=None, item=None, variety=None,
-                           farmer_pk=None, farmer_name=None, price=None):
+                           manager_pk=None, manager_name=None, price=None):
     sql = """
     SELECT * FROM vw_produce
     WHERE
@@ -102,10 +102,10 @@ def get_produce_by_filters(category=None, item=None, variety=None,
         conditionals.append(f"item='{item}'")
     if variety:
         conditionals.append(f"variety = '{variety}'")
-    if farmer_pk:
-        conditionals.append(f"farmer_pk = '{farmer_pk}'")
-    if farmer_name:
-        conditionals.append(f"farmer_name LIKE '%{farmer_name}%'")
+    if manager_pk:
+        conditionals.append(f"manager_pk = '{manager_pk}'")
+    if manager_name:
+        conditionals.append(f"manager_name LIKE '%{manager_name}%'")
     if price:
         conditionals.append(f"price <= {price}")
 
@@ -136,10 +136,10 @@ def get_produce_by_pk(pk):
     return produce
 
 
-def get_all_produce_by_farmer(pk):
+def get_all_produce_by_manager(pk):
     sql = """
     SELECT * FROM vw_produce
-    WHERE farmer_pk = %s
+    WHERE manager_pk = %s
     ORDER BY available DESC, price
     """
     db_cursor.execute(sql, (pk,))
@@ -159,7 +159,7 @@ def get_user_by_user_name(user_name):
 
 def get_all_produce():
     sql = """
-    SELECT produce_pk as pk, category, item, variety, unit, price, farmer_name, available, farmer_pk
+    SELECT produce_pk as pk, category, item, variety, unit, price, manager_name, available, manager_pk
     FROM vw_produce
     ORDER BY available DESC, price
     """
@@ -191,12 +191,12 @@ def get_orders_by_customer_pk(pk):
 
 
 # UPDATE QUERIES
-def update_sell(available, produce_pk, farmer_pk):
+def update_sell(available, produce_pk, manager_pk):
     sql = """
     UPDATE Sell
     SET available = %s
     WHERE produce_pk = %s
-    AND farmer_pk = %s
+    AND manager_pk = %s
     """
-    db_cursor.execute(sql, (available, produce_pk, farmer_pk))
+    db_cursor.execute(sql, (available, produce_pk, manager_pk))
     conn.commit()
