@@ -3,6 +3,7 @@
         <div class="links-wrapper">
             <a href="{{ url_for("Login.home") }}">Home</a>
             <a href="{{ url_for("Produce.produce") }}">All Statistics</a>
+            <a href="{{ url_for("Produce.players") }}">Search Players</a>
             {% if current_user.is_authenticated %}
             <a href="{{ url_for("Produce.add_produce") }}">Add Produce</a>
             <a href="{{ url_for("Produce.your_produce") }}">Your Produce</a>

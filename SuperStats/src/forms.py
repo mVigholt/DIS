@@ -66,6 +66,11 @@ class FilterProduceForm(FlaskForm):
 
     submit = SubmitField('Filter')
 
+class SearchPlayerForm(FlaskForm):
+    player_name = StringField('Player name')
+
+    submit = SubmitField('Search')
+
 
 class AddProduceForm(FlaskForm):
     category = SelectField('Category',

@@ -115,6 +115,17 @@ def get_produce_by_filters(category=None, item=None, variety=None,
     produce = [Produce(res) for res in db_cursor.fetchall()] if db_cursor.rowcount > 0 else []
     return produce
 
+def get_player_by_name(player_name=None):
+    sql = """
+    SELECT * FROM vw_produce
+    WHERE
+    """
+    name = f"farmer_name LIKE '%{player_name}%'"
+
+    db_cursor.execute(sql + name)
+    produce = [Produce(res) for res in db_cursor.fetchall()] if db_cursor.rowcount > 0 else []
+    return produce
+
 
 def get_customer_by_pk(pk):
     sql = """
