@@ -49,6 +49,25 @@ if init in yes:
     conn2.commit()
     conn2.close()
 
+    # ---------------------------------------------------------------
+    # Load Players.csv into database
+    # ---------------------------------------------------------------
+    conn3 = psycopg2.connect(
+        host="localhost",
+        database=os.getenv('DB_NAME'),
+        user=os.getenv('DB_USERNAME'),
+        password=os.getenv('DB_PASSWORD')
+    )
+    cur = conn3.cursor()
+
+    with open('dataset/Players.csv', 'r') as f:
+        next(f)  # Skip the header row.
+        cur.copy_from(f, 'players', sep=';', columns=('shirt_number', 'club_name', 'player_name', 'nationality', 'goals'))
+
+    conn3.commit()
+    cur.close()
+    conn3.close()
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
