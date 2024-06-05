@@ -1,16 +1,13 @@
-Create DB called "SuperStats" in pgAdmin
-
-Change password in .env: DB_PASSWORD = _Insert_your_password_here_
-
-
-In terminal:
-
-1. Intall python=3.10 in new environment
-1. Navigate to src folder
-1. pip install -r requirements.txt
-1. psql -d SuperStats -U postgres -h 127.0.0.1 -f utils\users.sql
-1. psql -d SuperStats -U postgres -h 127.0.0.1 -f utils\produce.sql
-1. flask run
+1. In folder SuperStats/src:
+    2. copy and rename file "RenameTo___.env___.txt" to ".env" to create .env file.
+    2. In .env file:
+        3. Change/Insert postgres password: DB_PASSWORD = _Insert_your_password_here_
+        3. Chose whether to initialize SuperStats DB or not (initialisation is required on first run): DB_INIT = True/False 
+1. In terminal:
+    2. Intall python=3.10 in new environment
+    2. Navigate to SuperStats/src folder
+    2. pip install -r requirements.txt
+    2. flask run 
 
 # Green Groceries
 
