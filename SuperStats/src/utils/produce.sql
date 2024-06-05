@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS  Players(
     club_name varchar(100),
     player_name varchar(100),
     nationality varchar(100),
-    goals float,
+    goals int,
     PRIMARY KEY (shirt_number, club_name)
 );
 

@@ -89,9 +89,9 @@ class Produce(ModelMixin):
         self.farmer_pk = produce_data.get('farmer_pk')
 
 
-class Player(ModelMixin):
+class Players(ModelMixin):
     def __init__(self, player_data: Dict):
-        super(Player, self).__init__(player_data)
+        super(Players, self).__init__(player_data)
         self.shirt_number = player_data.get('shirt_number')
         self.club_name = player_data.get('club_name')
         self.player_name = player_data.get('player_name')

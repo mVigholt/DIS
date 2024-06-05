@@ -84,6 +84,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
+from src import filters
 from src.blueprints.LoginTabs.routes import Login
 from src.blueprints.InfoTabs.routes import Info
 

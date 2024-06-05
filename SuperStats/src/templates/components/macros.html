@@ -84,3 +84,19 @@
         </div>
     </form>
 {% endmacro %}
+
+
+{% macro player_card (player=None, show_checkout=True, show_restock=False, date=None) %}
+    <div class="card">
+        <div class="card__info">
+            {% if date %}
+                <p>Date: {{ date }}</p>
+            {% endif %}
+            <p>Club: {{ player.club_name|format_data }}</p>
+            <p>Shirt number: {{ player.shirt_number }}</p>
+            <p>Player name: {{ player.player_name|format_data }}</p>
+            <p>Nationality: {{ player.nationality|format_data }}</p>
+            <p>Goals: {{ player.goals }} </p>
+        </div>
+    </div>
+{% endmacro %}
