@@ -98,6 +98,20 @@ class Players(ModelMixin):
         self.nationality = player_data.get('nationality')
         self.goals = player_data.get('goals')
 
+class Clubs(ModelMixin):
+    def __init__(self, club_data: Dict):
+        super(Clubs, self).__init__(club_data)
+        self.club_name = club_data.get('club_name')
+        self.manager_name = club_data.get('manager_name')
+        self.games_played = club_data.get('games_played')
+        self.wins = club_data.get('wins')
+        self.draws = club_data.get('draws')
+        self.losses = club_data.get('losses')
+        self.points = club_data.get('points')
+        self.goals_scored = club_data.get('goals_scored')
+        self.goals_conceded = club_data.get('goals_conceded')
+        self.goal_difference = club_data.get('goal_difference')
+
 
 class Sell(ModelMixin):
     def __init__(self, sell_data: Dict):

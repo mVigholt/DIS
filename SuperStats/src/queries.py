@@ -1,5 +1,5 @@
 from src import db_cursor, conn
-from src.models import User, Manager, Customer, Produce, Sell, ProduceOrder , Match , MatchInfo, Players
+from src.models import User, Manager, Customer, Produce, Sell, ProduceOrder , Match , MatchInfo, Players, Clubs
 
 
 # INSERT QUERIES
@@ -147,6 +147,16 @@ def get_player_by_name(player_name=None):
     players = [Players(res) for res in db_cursor.fetchall()] if db_cursor.rowcount > 0 else []
     return players
 
+def get_club_by_name(club_name=None):
+    sql = """
+    SELECT * FROM clubs
+    WHERE LOWER(club_name) LIKE LOWER(%s)
+    """
+    name = f"%{club_name}%"
+
+    db_cursor.execute(sql, (name,))
+    clubs = [Clubs(res) for res in db_cursor.fetchall()] if db_cursor.rowcount > 0 else []
+    return clubs
 
 
 def get_customer_by_pk(pk):

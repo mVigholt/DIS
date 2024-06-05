@@ -3,7 +3,7 @@
         <div class="links-wrapper">
             <a href="{{ url_for("Login.home") }}">Home</a>
             <a href="{{ url_for("Produce.players") }}">Player info</a>
-            <a href="{{ url_for("Produce.your_orders") }}">Club info</a>
+            <a href="{{ url_for("Produce.clubs") }}">Club info</a>
             {% if current_user.is_authenticated %}
             <a href="{{ url_for("Produce.add_match_info") }}">Add match info</a>
             {% endif %}
