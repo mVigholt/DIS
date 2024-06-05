@@ -7,7 +7,10 @@
     1. Intall python=3.10 in new environment
     1. Navigate to SuperStats/src folder
     1. pip install -r requirements.txt
-    1. flask run 
+    1. Run program with or without specifying host and port: 
+      1. flask run 
+      1. flask run -h localhost -p 5000
+        1. Specifying host and port enables login as different users simulta simultaneously.
 
 # Green Groceries
 

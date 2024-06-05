@@ -47,10 +47,31 @@ class Manager(User):
         super().__init__(user_data)
 
 
+class Match(ModelMixin):
+    def __init__(self, match_data: Dict):
+        super(Match, self).__init__(match_data)
+        self.match_id = match_data.get('match_id')
+        self.home_team_name = match_data.get('home_team_name')
+        self.away_team_name = match_data.get('away_team_name')
+        self.home_team_goals = match_data.get('home_team_goals')
+        self.away_team_goals = match_data.get('away_team_goals')
+
+class MatchInfo(ModelMixin):
+    def __init__(self, match_info_data: Dict):
+        super(MatchInfo, self).__init__(match_info_data)
+        self.pk = match_info_data.get('pk')
+        self.match_id = match_info_data.get('match_id')
+        self.shirt_number = match_info_data.get('shirt_number')
+        self.club_name = match_info_data.get('club_name')
+        self.goals_scored = match_info_data.get('goals_scored')
+
+
 if __name__ == '__main__':
     user_data = dict(full_name='a', user_name='b', password='c')
     user = Manager(user_data)
     print(user)
+
+
 
 
 class Produce(ModelMixin):

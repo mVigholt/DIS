@@ -1,10 +1,13 @@
-from flask import render_template, url_for, redirect, request, Blueprint
+from flask import render_template, url_for, redirect, request, Blueprint , jsonify
 from flask_login import login_user, current_user, logout_user
+import os
+import pandas
 
 from src.forms import ManagerLoginForm, UserSignupForm
 from src.models import Manager, Customer
 from src.queries import get_user_by_user_name, insert_manager, insert_customer
 from src.utils.choices import ClubChoices
+from src import app
 
 Login = Blueprint('Login', __name__)
 
@@ -62,7 +65,11 @@ def signup():
     return render_template('pages/signup.html', form=form)
 
 
+
+
+
 @Login.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('Login.login'))
+

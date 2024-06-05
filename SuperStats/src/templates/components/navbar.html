@@ -5,7 +5,7 @@
             <a href="{{ url_for("Produce.players") }}">Player info</a>
             <a href="{{ url_for("Produce.your_orders") }}">Club info</a>
             {% if current_user.is_authenticated %}
-            <a href="{{ url_for("Produce.add_produce") }}">Add match info</a>
+            <a href="{{ url_for("Produce.add_match_info") }}">Add match info</a>
             {% endif %}
         </div>
 

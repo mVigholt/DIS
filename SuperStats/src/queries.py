@@ -1,5 +1,5 @@
 from src import db_cursor, conn
-from src.models import User, Manager, Customer, Produce, Sell, ProduceOrder
+from src.models import User, Manager, Customer, Produce, Sell, ProduceOrder , Match , MatchInfo
 
 
 # INSERT QUERIES
@@ -19,6 +19,27 @@ def insert_manager(manager: Manager):
     """
     db_cursor.execute(sql, (manager.user_name, manager.full_name, manager.password, manager.club_name))
     conn.commit()
+
+
+def insert_match(match: Match):
+    print('HAAAAAAAALLOOO')
+    sql = """
+    INSERT INTO Matches(match_id ,home_team_name, away_team_name , home_team_goals , away_team_goals)
+    VALUES (%s , %s, %s , %s , %s)
+    """
+    db_cursor.execute(sql, (match.match_id, match.home_team_name, match.away_team_name , match.home_team_goals , match.away_team_goals))
+    conn.commit()
+
+
+def insert_match_info(match_info: MatchInfo):
+    sql = """
+    INSERT INTO MatchInfo(match_id, shirt_number, club_name, goals_scored)
+    VALUES (%s, %s, %s, %s)
+    """
+    db_cursor.execute(sql, (match_info.match_id, match_info.shirt_number, match_info.club_name, match_info.goals_scored))
+    conn.commit()
+
+
 
 
 def insert_customer(customer: Customer):

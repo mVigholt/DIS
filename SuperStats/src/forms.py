@@ -1,11 +1,11 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, IntegerField, SelectField, FloatField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, SelectField, FloatField, FieldList, FormField
 from wtforms.validators import DataRequired, Length, ValidationError, NumberRange
 
 from src.queries import get_user_by_user_name, get_manager_by_pk, get_customer_by_pk
-from src.utils.choices import ProduceItemChoices, ProduceCategoryChoices, ClubChoices, \
-    ProduceVarietyChoices, ProduceUnitChoices
+from src.utils.choices import ClubChoices, PlayerChoices 
+    
 #UserTypeChoices
 
 class ManagerLoginForm(FlaskForm):
@@ -53,18 +53,18 @@ class UserSignupForm(FlaskForm):
             raise ValidationError(f'Provided passwords do not match.')
 
 
-class FilterProduceForm(FlaskForm):
-    category = SelectField('Category',
-                           choices=ProduceCategoryChoices.choices())
-    item = SelectField('Item',
-                       choices=ProduceItemChoices.choices())
-    variety = SelectField('Variety',
-                          choices=ProduceVarietyChoices.choices())
-    sold_by = StringField('Sold by')
-    price = FloatField('Price (lower than or equal to)',
-                       validators=[NumberRange(min=0, max=100)])
-
-    submit = SubmitField('Filter')
+#class FilterProduceForm(FlaskForm):
+#    category = SelectField('Category',
+#                           choices=ProduceCategoryChoices.choices())
+#    item = SelectField('Item',
+#                       choices=ProduceItemChoices.choices())
+#    variety = SelectField('Variety',
+#                          choices=ProduceVarietyChoices.choices())
+#    sold_by = StringField('Sold by')
+#    price = FloatField('Price (lower than or equal to)',
+#                       validators=[NumberRange(min=0, max=100)])
+#
+#    submit = SubmitField('Filter')
 
 class SearchPlayerForm(FlaskForm):
     player_name = StringField('Player name')
@@ -72,30 +72,27 @@ class SearchPlayerForm(FlaskForm):
     submit = SubmitField('Search')
 
 
-class AddProduceForm(FlaskForm):
-    category = SelectField('Category',
-                           validators=[DataRequired()],
-                           choices=ProduceCategoryChoices.choices())
-    item = SelectField('Item (Subcategory)',
-                       validators=[DataRequired()],
-                       choices=ProduceItemChoices.choices())
-    variety = SelectField('Variety',
-                          validators=[DataRequired()],
-                          choices=ProduceVarietyChoices.choices())
-    unit = SelectField('Unit',
-                       validators=[DataRequired()],
-                       choices=ProduceUnitChoices.choices())
-    price = IntegerField('Price',
-                         validators=[DataRequired(), NumberRange(min=0, max=100)])
-    manager_pk = IntegerField('Manager',
-                             validators=[DataRequired()],
-                             render_kw=dict(disabled='disabled'))
-    submit = SubmitField('Add produce')
+class GoalscorerForm(FlaskForm):
+    club = SelectField('Club', choices=ClubChoices.values())
+    shirt_number = IntegerField('Shirt Number', validators=[DataRequired(), NumberRange(min=1, max=99)])
+    player = SelectField('Player', choices=PlayerChoices.values())
+    goals = IntegerField('Goals', validators=[DataRequired(), NumberRange(min=0, max=20)])
 
-    def validate_price(self, field):
+    
+class AddMatchInfoForm(FlaskForm):
+    home_team = SelectField('Home Team', choices=ClubChoices.values())
+    away_team = SelectField('Away Team', choices=ClubChoices.values())
+    home_team_goals = IntegerField('Home Goals', validators=[NumberRange(min=0, max=20)])
+    away_team_goals = IntegerField('Away Goals', validators=[NumberRange(min=0, max=20)])
+    goalscorers = FieldList(FormField(GoalscorerForm), min_entries=1)
+    manager_pk = IntegerField('Manager', validators=[DataRequired()], render_kw=dict(disabled='disabled'))
+    submit = SubmitField('Add MatchInfo')
+
+    def validate_manager_pk(self, field):
         manager = get_manager_by_pk(self.manager_pk.data)
         if manager is None:
-            raise ValidationError("You need to be a farmer to sell produce!")
+            raise ValidationError("You need to be a manager to submit matchinfo!")
+
 
 
 class BuyProduceForm(FlaskForm):

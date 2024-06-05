@@ -33,6 +33,44 @@ DELETE FROM Managers;
 INSERT INTO Managers(user_name,full_name, password, club_name)
 VALUES ('Thomas','Sample Manager', 'pass', 'Sample Club');
 
+-- Drop the tables if they exist
+DROP TABLE IF EXISTS Matches CASCADE;
+DROP TABLE IF EXISTS MatchInfo CASCADE;
+
+-- Matches
+CREATE TABLE IF NOT EXISTS Matches (
+    match_id INTEGER PRIMARY KEY,
+    home_team_name VARCHAR(255),
+    away_team_name VARCHAR(255),
+    home_team_goals INTEGER,
+    away_team_goals INTEGER
+
+);
+
+-- Matchinfo
+CREATE TABLE IF NOT EXISTS MatchInfo (
+    match_id INTEGER REFERENCES Matches(match_id),
+    shirt_number INTEGER,
+    club_name VARCHAR(255),
+    goals_scored INTEGER
+);
+
+-- Insert sample data into the Matches table
+INSERT INTO Matches (match_id , home_team_name, away_team_name , home_team_goals , away_team_goals)
+VALUES 
+    ('0','Home Team A','Away Team X','3','1');
+   
+-- Insert sample data into the MatchInfo table
+INSERT INTO MatchInfo (match_id, shirt_number, club_name, goals_scored)
+VALUES 
+    (0, 10,'Home Team A', 2);
+   
+
+
+
+
+
+
 DROP TABLE IF EXISTS Farmers CASCADE;
 
 CREATE TABLE IF NOT EXISTS Farmers(
