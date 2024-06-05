@@ -1,5 +1,5 @@
 {% macro cta_button (class='') %}
-    <a class="btn {{ class }}" href="{{ url_for('Produce.produce') }}">
+    <a class="btn {{ class }}" href="{{ url_for('Produce.players') }}">
         <span>
             <img src="{{ url_for('static', filename='images/icons/soccerball.svg') }}" alt="cart" class="icon">
             Explore now!
@@ -61,7 +61,7 @@
             </div>
 
             {{ form.submit(class="btn") }}
-            <a href="{{ url_for('Produce.produce') }}" class="btn">Clear filters</a>
+            <a href="{{ url_for('Produce.players') }}" class="btn">Clear filters</a>
         </div>
     </form>
 {% endmacro %}
@@ -83,37 +83,4 @@
             <a href="{{ url_for('Produce.players') }}" class="btn">Clear</a>
         </div>
     </form>
-{% endmacro %}
-
-
-{% macro produce_card (product=None, show_checkout=True, show_restock=False, date=None) %}
-    <div class="card">
-        <div class="card__info">
-            {% if date %}
-                <p>Date: {{ date }}</p>
-            {% endif %}
-            <p>Category: {{ product.category|format_data }}</p>
-            <p>Item: {{ product.item|format_data }}</p>
-            <p>Variety: {{ product.variety|format_data }}</p>
-            <p>Price: £{{ product.price }} / {{ product.unit }}</p>
-            {% if not date %}
-                <p>In stock: {{ product.available }}</p>
-                <p>Sold by: {{ product.farmer_name }}</p>
-            {% endif %}
-        </div>
-
-        <div class="card__action">
-            {% if show_checkout %}
-                {% if product.available %}
-                    <a href="{{ url_for('Produce.buy_produce', pk=product.produce_pk) }}">Buy</a>
-                {% endif %}
-            {% else %}
-                {% if show_restock %}
-                    {% if not product.available %}
-                        <a href="{{ url_for('Produce.restock_produce', pk=product.produce_pk) }}">Restock</a>
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-        </div>
-    </div>
 {% endmacro %}

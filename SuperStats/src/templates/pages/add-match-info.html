@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% from "components/macros.html" import form_errors %}
 
-{% block title %}Add produce{% endblock %}
+{% block title %}Match info{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
@@ -9,7 +9,7 @@
 
 {% block content %}
     <section class="form-wrapper">
-        <h1>Add produce</h1>
+        <h1>Match info</h1>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
 
