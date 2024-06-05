@@ -1,13 +1,13 @@
 1. In folder SuperStats/src:
-2. copy and rename file "RenameTo___.env___.txt" to ".env" to create .env file.
-2. In .env file:
-3. Change/Insert postgres password: DB_PASSWORD = _Insert_your_password_here_
-3. Chose whether to initialize SuperStats DB or not (initialisation is required on first run): DB_INIT = True/False 
-1. In terminal:
-2. Intall python=3.10 in new environment
-2. Navigate to SuperStats/src folder
-2. pip install -r requirements.txt
-2. flask run 
+    1. copy and rename file "RenameTo___.env___.txt" to ".env" to create .env file.
+    2. In .env file:
+        1. Change/Insert postgres password: DB_PASSWORD = _Insert_your_password_here_
+        1. Chose whether to initialize SuperStats DB or not (initialisation is required on first run): DB_INIT = True/False 
+2. In terminal:
+    1. Intall python=3.10 in new environment
+    2. Navigate to SuperStats/src folder
+    3. pip install -r requirements.txt
+    4. flask run 
 
 # Green Groceries
 
