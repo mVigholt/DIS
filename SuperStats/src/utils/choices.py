@@ -27,7 +27,7 @@ class ModelChoices:
 
 df = pd.read_csv(DATASET_PATH, sep=';')
 
-PlayerChoices = ModelChoices(df.name.unique())
+PlayerChoices = ModelChoices(df.player_name.unique())
 
 
 

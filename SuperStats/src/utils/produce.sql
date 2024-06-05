@@ -1,3 +1,19 @@
+DROP TABLE IF EXISTS Players CASCADE;
+
+CREATE TABLE IF NOT EXISTS  Players(
+    shirt_number int not null,
+    club_name varchar(100),
+    player_name varchar(100),
+    nationality varchar(100),
+    goals float,
+    PRIMARY KEY (shirt_number, club_name)
+);
+
+DELETE FROM Players;
+
+CREATE INDEX IF NOT EXISTS players_index
+ON Players (shirt_number, club_name);
+
 DROP TABLE IF EXISTS Produce CASCADE;
 
 CREATE TABLE IF NOT EXISTS Produce(

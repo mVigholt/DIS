@@ -1,4 +1,4 @@
-shirt_number;club_name;name;nationality;goals
+shirt_number;club_name;player_name;nationality;goals
 14;FC København;Andreas Cornelius;Danmark;0
 24;FC København;Birger Meling;Norge;0
 6;FC København;Christian Sørensen;Danmark;0
@@ -25,7 +25,6 @@ shirt_number;club_name;name;nationality;goals
 31;FC København;Runar Alex Runarsson;Island;0
 26;FC København;Scott McKenna;Skotland;0
 21;FC København;Theo Sander;Danmark;0
-NULL;FC København;Valdemar Lund Jensen;Danmark;0
 47;FC København;Victor Froholdt;Danmark;0
 7;FC København;Viktor Claesson;Sverige;0
 36;FC København;William Clem;Danmark;0
@@ -59,9 +58,6 @@ NULL;FC København;Valdemar Lund Jensen;Danmark;0
 9;AGF;Patrick Mortensen;Danmark;0
 13;AGF;Janni Serra;Tyskland;0
 31;AGF;Tobias Bech;Danmark;0
-NULL;AGF;Thomas Kristensen;Danmark;0
-NULL;AGF;Adam Daghim;Danmark;0
-NULL;AGF;Mathias Sauer;Danmark;0
 1;Brøndby IF;Patrick Pentz;Østrig;0
 16;Brøndby IF;Thomas Mikkelsen;Danmark;0
 40;Brøndby IF;Jonathan Ægidius;Danmark;0
@@ -88,32 +84,27 @@ NULL;AGF;Mathias Sauer;Danmark;0
 9;Brøndby IF;Ohi Omoijuanfo;Norge;0
 36;Brøndby IF;Mathias Kvistgaarden;Danmark;0
 41;Brøndby IF;Oscar Schwartau;Danmark;0
-NULL;Brøndby IF;Blas Riveros;Paraguay;0
-NULL;Brøndby IF;Håkon Evjen;Norge;0
-NULL;Brøndby IF;Joe Bell;New Zealand;0
-NULL;Brøndby IF;Simon Hedlund;Sverige;0
-NULL;Brøndby IF;Yousef Salech;Danmark;0
 1;FC Midtjylland;Jonas Lössl;Danmark;0
 50;FC Midtjylland;Martin Fraisl;Østrig;0
 90;FC Midtjylland;Oscar Hedvall;Danmark;0
 3;FC Midtjylland;Han-beom Lee;Sydkorea;0
 6;FC Midtjylland;Joel Andersson;Sverige;0
-13;FC Midtjylland;Adam Gabriel;Tjekkiet;0
-21;FC Midtjylland;Henrik Dalsgaard;Danmark;0
-19;FC Midtjylland;Sverrir Ingi Ingason;Island;0
-19;FC Midtjylland;Mads Bech Sørensen;Danmark;0
-21;FC Midtjylland;Paulinho;Brasilien;0
+131;FC Midtjylland;Adam Gabriel;Tjekkiet;0
+211;FC Midtjylland;Henrik Dalsgaard;Danmark;0
+190;FC Midtjylland;Sverrir Ingi Ingason;Island;0
+191;FC Midtjylland;Mads Bech Sørensen;Danmark;0
+212;FC Midtjylland;Paulinho;Brasilien;0
 55;FC Midtjylland;Victor Bak;Danmark;0
-22;FC Midtjylland;Juninho;Brasilien;0
+221;FC Midtjylland;Juninho;Brasilien;0
 20;FC Midtjylland;André Rømer;Danmark;0
 11;FC Midtjylland;Emiliano Martínez;Uruguay;0
-13;FC Midtjylland;Kristoffer Olsson;Sverige;0
-19;FC Midtjylland;Darío Osorio;Chile;0
+132;FC Midtjylland;Kristoffer Olsson;Sverige;0
+192;FC Midtjylland;Darío Osorio;Chile;0
 2;FC Midtjylland;Valdemar Byskov;Danmark;0
 25;FC Midtjylland;Oliver Sørensen;Danmark;0
-22;FC Midtjylland;Charles;Brasilien;0
+222;FC Midtjylland;Charles;Brasilien;0
 24;FC Midtjylland;Armin Gigovic;Sverige;0
-21;FC Midtjylland;Ola Brynhildsen;Norge;0
+213;FC Midtjylland;Ola Brynhildsen;Norge;0
 26;FC Midtjylland;Cho Gue-Sung;Sydkorea;0
 17;FC Midtjylland;Franculino Djú;Guinea;0
 33;FC Midtjylland;Mikel Gogorza;Danmark;0
@@ -151,10 +142,10 @@ NULL;Brøndby IF;Yousef Salech;Danmark;0
 2;Hvidovre IF;Daniel Stenderup;Danmark;0
 5;Hvidovre IF;Matti Olsen;Danmark;0
 12;Hvidovre IF;Magnus Lysholm;Danmark;0
-15;Hvidovre IF;Ahmed Iljazovski;Danmark;0
+151;Hvidovre IF;Ahmed Iljazovski;Danmark;0
 23;Hvidovre IF;Nicolaj Clausen;Danmark;0
-25;Hvidovre IF;Malte Kiilerich;Danmark;0
-16;Hvidovre IF;Marc Nielsen;Danmark;0
+251;Hvidovre IF;Malte Kiilerich;Danmark;0
+161;Hvidovre IF;Marc Nielsen;Danmark;0
 30;Hvidovre IF;Magnus Fredslund;Danmark;0
 4;Hvidovre IF;Matti Lund Nielsen;Danmark;0
 6;Hvidovre IF;Jonas Gemmer;Danmark;0
@@ -168,40 +159,40 @@ NULL;Brøndby IF;Yousef Salech;Danmark;0
 22;Hvidovre IF;Andreas Smed;Danmark;0
 27;Hvidovre IF;Mathias Andreasen;Danmark;0
 24;Hvidovre IF;Lirim Qamili;Danmark;0
-25;Hvidovre IF;Tobias Thomsen;Danmark;0
-16;Hvidovre IF;Jeffrey Papa;Danmark;0
+252;Hvidovre IF;Tobias Thomsen;Danmark;0
+162;Hvidovre IF;Jeffrey Papa;Danmark;0
 19;Hvidovre IF;Marco Ramkilde;Danmark;0
 21;Hvidovre IF;Morten Voldby Olsen;Danmark;0
-15;Hvidovre IF;Simon Makienok;Danmark;0
-1;Lyngby;David Jensen;Danmark;0
+152;Hvidovre IF;Simon Makienok;Danmark;0
+101;Lyngby;David Jensen;Danmark;0
 32;Lyngby;Jannich Storch;Danmark;0
-3;Lyngby;Brian Hamalainen;Danmark;0
-5;Lyngby;Lucas Lissens;Belgien;0
-6;Lyngby;Andreas Bjelland;Danmark;0
+301;Lyngby;Brian Hamalainen;Danmark;0
+501;Lyngby;Lucas Lissens;Belgien;0
+601;Lyngby;Andreas Bjelland;Danmark;0
 7;Lyngby;William Kumado;Ghana;0
 12;Lyngby;Magnus Riisgaard Jensen;Danmark;0
 16;Lyngby;Johan Meyer;Danmark;0
 20;Lyngby;Kolbeinn Finnsson;Island;0
-23;Lyngby;Pascal Gregor;Danmark;0
+231;Lyngby;Pascal Gregor;Danmark;0
 25;Lyngby;Gustav Mortensen;Danmark;0
-3;Lyngby;Parfait Bizoza;Norge;0
+302;Lyngby;Parfait Bizoza;Norge;0
 8;Lyngby;Rezan Corlu;Danmark;0
-22;Lyngby;Casper Winther;Danmark;0
+221;Lyngby;Casper Winther;Danmark;0
 2;Lyngby;Lauge Sandgrav;Danmark;0
-5;Lyngby;Gylfi Sigurdsson;Island;0
+502;Lyngby;Gylfi Sigurdsson;Island;0
 19;Lyngby;Sanders Ngabo;Danmark;0
-6;Lyngby;Gustav Fraulo;Danmark;0
-21;Lyngby;Tobias Storm;Danmark;0
+602;Lyngby;Gustav Fraulo;Danmark;0
+211;Lyngby;Tobias Storm;Danmark;0
 24;Lyngby;Marcel Rømer;Danmark;0
-4;Lyngby;Enock Otoo;Ghana;0
+401;Lyngby;Enock Otoo;Ghana;0
 26;Lyngby;Tochi Chukwuani;Danmark;0
-4;Lyngby;Michael Opoku;Danmark;0
+402;Lyngby;Michael Opoku;Danmark;0
 17;Lyngby;Jonathan Amon;USA;0
-21;Lyngby;Sævar Atli Magnusson;Island;0
-22;Lyngby;Andri Gudjohnsen;Island;0
-23;Lyngby;Frederik Gytkjær;Danmark;0
+212;Lyngby;Sævar Atli Magnusson;Island;0
+222;Lyngby;Andri Gudjohnsen;Island;0
+232;Lyngby;Frederik Gytkjær;Danmark;0
 0;Lyngby;Nicolai Baden Frederiksen;Danmark;0
-1;Lyngby;Emile Chambo;Cameroun;0
+102;Lyngby;Emile Chambo;Cameroun;0
 1;OB;Martin Hansen;Danmark;0
 13;OB;Hans Christian Bernat;Danmark;0
 16;OB;Viljar Myhra;Norge;0
@@ -246,23 +237,23 @@ NULL;Brøndby IF;Yousef Salech;Danmark;0
 9;Randers FC;Simen Nordli;Norge;0
 11;Randers FC;Edgar Babayan;Danmark;0
 12;Randers FC;Mikkel Mejlstrup;Danmark;0
-17;Randers FC;Mads Albæk;Danmark;0
+171;Randers FC;Mads Albæk;Danmark;0
 18;Randers FC;Noah Shamoun;Sverige;0
-21;Randers FC;Ernest Agyiri;Ghana;0
+211;Randers FC;Ernest Agyiri;Ghana;0
 28;Randers FC;Lasso Coulibaly;Ghana;0
 30;Randers FC;Mike Themsen;Danmark;0
-9;Randers FC;Bashkim Kadrii;Danmark;0
+901;Randers FC;Bashkim Kadrii;Danmark;0
 10;Randers FC;Don Deedson Louicius;Haiti;0
-17;Randers FC;Luca Kjerrumgaard;Danmark;0
-21;Randers FC;Charly Nouck;Danmark;0
+172;Randers FC;Luca Kjerrumgaard;Danmark;0
+212;Randers FC;Charly Nouck;Danmark;0
 26;Randers FC;Agon Mucolli;Danmark;0
-9;Randers FC;Max Fenger;Danmark;0
+902;Randers FC;Max Fenger;Danmark;0
 77;Randers FC;Mohammed Fuseini;Ghana;0
 90;Randers FC;Stephen Odey;Nigeria;0
 27;Silkeborg IF;Nicolai Larsen;Danmark;0
 1;Silkeborg IF;Jacob Pryts;Danmark;0
 30;Silkeborg IF;Aske Andrésen;Danmark;0
-2;Silkeborg IF;Andreas Poulsen;Danmark;0
+201;Silkeborg IF;Andreas Poulsen;Danmark;0
 3;Silkeborg IF;Robin Dahl Öström;Norge;0
 4;Silkeborg IF;Joel Felix;Danmark;0
 5;Silkeborg IF;Oliver Sonne;Peru;0
@@ -282,7 +273,7 @@ NULL;Brøndby IF;Yousef Salech;Danmark;0
 20;Silkeborg IF;Lubambo Musonda;Zambia;0
 41;Silkeborg IF;Oskar Boesen;Danmark;0
 9;Silkeborg IF;Alexander Lind;Danmark;0
-2;Silkeborg IF;Asbjørn Bøndergaard;Danmark;0
+202;Silkeborg IF;Asbjørn Bøndergaard;Danmark;0
 23;Silkeborg IF;Tonni Adamsen;Danmark;0
 27;Vejle BK;Nathan Trott;England;0
 24;Vejle BK;Tobias Haahr Jakobsen;Danmark;0
@@ -310,12 +301,12 @@ NULL;Brøndby IF;Yousef Salech;Danmark;0
 17;Vejle BK;Dimitris Emmanouilidis;Grækenland;0
 18;Vejle BK;Anders K. Jacobsen;Danmark;0
 19;Vejle BK;Victor Lind;Danmark;0
-17;Viborg FF;Lucas Lund;Danmark;0
+171;Viborg FF;Lucas Lund;Danmark;0
 20;Viborg FF;Kasper Kiilerich;Danmark;0
 58;Viborg FF;Nico Mantl;Tyskland;0
 3;Viborg FF;Mads Lauritsen;Danmark;0
 4;Viborg FF;Nicolas Bürgy;Schweiz;0
-5;Viborg FF;Zan Zaletel;Slovenien;0
+501;Viborg FF;Zan Zaletel;Slovenien;0
 23;Viborg FF;Oliver Bundgaard;Danmark;0
 24;Viborg FF;Daniel Anyembe;Danmark;0
 25;Viborg FF;Anel Zulic;Slovenien;0
@@ -327,10 +318,10 @@ NULL;Brøndby IF;Yousef Salech;Danmark;0
 10;Viborg FF;Jamie Jacobs;Holland;0
 13;Viborg FF;Jeppe Grønning;Danmark;0
 15;Viborg FF;Isak Steiner Jensen;Danmark;0
-17;Viborg FF;Jakob Bonde;Danmark;0
+172;Viborg FF;Jakob Bonde;Danmark;0
 18;Viborg FF;Manuel Mbom;Tyskland;0
 19;Viborg FF;Magnus Westergaard;Danmark;0
-5;Viborg FF;Jakob Vester;Danmark;0
+502;Viborg FF;Jakob Vester;Danmark;0
 8;Viborg FF;Ibrahim Said;Nigeria;0
 9;Viborg FF;Nigel Thomas;Holland;0
 11;Viborg FF;Renato Júnior;Brasilien;0
