@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS  Players(
     club_name varchar(100),
     player_name varchar(100),
     nationality varchar(100),
-    goals float,
+    goals int,
     PRIMARY KEY (shirt_number, club_name)
 );
 
@@ -13,6 +13,27 @@ DELETE FROM Players;
 
 CREATE INDEX IF NOT EXISTS players_index
 ON Players (shirt_number, club_name);
+
+
+DROP TABLE IF EXISTS Clubs CASCADE;
+
+CREATE TABLE IF NOT EXISTS Clubs(
+    club_name varchar(100) not null PRIMARY KEY,
+    manager_name varchar(100),
+    games_played int,
+    wins int,
+    draws int,
+    losses int,
+    points int,
+    goals_scored int,
+    goals_conceded int,
+    goal_difference int
+);
+
+DELETE FROM Clubs;
+
+CREATE INDEX IF NOT EXISTS clubs_index
+ON Clubs (club_name);
 
 DROP TABLE IF EXISTS Produce CASCADE;
 

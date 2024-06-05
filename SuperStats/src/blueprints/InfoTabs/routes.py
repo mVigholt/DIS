@@ -1,11 +1,11 @@
 from flask import render_template, request, Blueprint , flash , redirect
 from flask_login import login_required, current_user
 
-from src.forms import AddMatchInfoForm, ManagerLoginForm, UserSignupForm, SearchPlayerForm
+from src.forms import AddMatchInfoForm, ManagerLoginForm, UserSignupForm, SearchPlayerForm, SearchClubForm
 from src.models import Produce as ProduceModel, ProduceOrder , Match , MatchInfo
 from src.queries import insert_produce, get_produce_by_pk, Sell, insert_manager , insert_match , insert_match_info,\
     insert_sell, get_all_produce_by_manager, get_produce_by_filters, insert_produce_order, update_sell, \
-    get_orders_by_customer_pk, get_player_by_name
+    get_orders_by_customer_pk, get_player_by_name, get_club_by_name
 
 Info = Blueprint('Produce', __name__)
 
@@ -22,12 +22,22 @@ pkg = PrimaryKeyGenerator()
 @Info.route("/players", methods=['GET', 'POST'])
 def players():
     form = SearchPlayerForm()
-    title = 'All players!'
+    title = 'Player info'
     players = []
     if request.method == 'POST':
         players = get_player_by_name(player_name=request.form.get('player_name'))
         title = f'Searching for playes...!'
     return render_template('pages/players.html', players=players, form=form, title=title)
+
+@Info.route("/clubs", methods=['GET', 'POST'])
+def clubs():
+    form = SearchClubForm()
+    title = 'Club info'
+    clubs = []
+    if request.method == 'POST':
+        clubs = get_club_by_name(club_name=request.form.get('club_name'))
+        title = f'Searching for clubs...!'
+    return render_template('pages/clubs.html', clubs=clubs, form=form, title=title)
 
 
 @Info.route("/add-match-info", methods=['GET', 'POST'])
@@ -75,7 +85,3 @@ def add_match_info():
     return render_template('pages/add-match-info.html', form=form)
 
 
-@Info.route("/clubs", methods=['GET', 'POST'])
-def your_orders():
-    orders = get_orders_by_customer_pk(current_user.pk)
-    return render_template('pages/clubs.html', orders=orders)

@@ -84,3 +84,52 @@
         </div>
     </form>
 {% endmacro %}
+
+
+{% macro player_card (player=None, show_checkout=True, show_restock=False, date=None) %}
+    <div class="card">
+        <div class="card__info">
+            {% if date %}
+                <p>Date: {{ date }}</p>
+            {% endif %}
+            <p>Club: {{ player.club_name|format_data }}</p>
+            <p>Shirt number: {{ player.shirt_number }}</p>
+            <p>Player name: {{ player.player_name|format_data }}</p>
+            <p>Nationality: {{ player.nationality|format_data }}</p>
+            <p>Goals: {{ player.goals }} </p>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro search_club_form (form=None, club_name=True) %}
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form--row">
+            {% if club_name %}
+                <div class="form-group">
+                    {{ form.club_name.label }}
+                    {{ form.club_name }}
+                </div>
+            {% endif %}
+
+            {{ form.submit(class="btn") }}
+            <a href="{{ url_for('Produce.players') }}" class="btn">Clear</a>
+        </div>
+    </form>
+{% endmacro %}
+
+
+{% macro club_card (club=None, show_checkout=True, show_restock=False, date=None) %}
+    <div class="card">
+        <div class="card__info">
+            {% if date %}
+                <p>Date: {{ date }}</p>
+            {% endif %}
+            <p>Club: {{ club.club_name|format_data }}</p>
+            <p>Manager name: {{ club.manager_name|format_data }}</p>
+            <p>Games played: {{ club.games_played }}</p>
+            <p>Points: {{ club.points }} </p>
+        </div>
+    </div>
+{% endmacro %}

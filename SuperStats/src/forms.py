@@ -71,9 +71,13 @@ class SearchPlayerForm(FlaskForm):
 
     submit = SubmitField('Search')
 
+class SearchClubForm(FlaskForm):
+    club_name = StringField('Club name')
+
+    submit = SubmitField('Search')
 
 class GoalscorerForm(FlaskForm):
-    club = SelectField('Club', choices=ClubChoices.values())
+    club = SelectField('Club', choices=ClubChoices.choices())
     shirt_number = IntegerField('Shirt Number', validators=[DataRequired(), NumberRange(min=1, max=99)])
     player = SelectField('Player', choices=PlayerChoices.values())
     goals = IntegerField('Goals', validators=[DataRequired(), NumberRange(min=0, max=20)])

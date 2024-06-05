@@ -68,6 +68,28 @@ if init in yes:
     cur.close()
     conn3.close()
 
+    # ---------------------------------------------------------------
+    # Load Clubs.csv into database
+    # Schema is club_name;managername;gamesplayed;wins;draws;losses;points;goalsscored;goalsconceded;goaldifference
+    # ---------------------------------------------------------------
+
+    conn4 = psycopg2.connect(
+        host="localhost",
+        database=os.getenv('DB_NAME'),
+        user=os.getenv('DB_USERNAME'),
+        password=os.getenv('DB_PASSWORD')
+    )
+    cur = conn4.cursor()
+
+    with open('dataset/Clubs.csv', 'r') as f:
+        next(f)
+        cur.copy_from(f, 'clubs', sep=';', columns=('club_name', 'manager_name', 'games_played', 'wins', 'draws', 'losses', 'points', 'goals_scored', 'goals_conceded', 'goal_difference'))
+
+    conn4.commit()
+    cur.close()
+    conn4.close()
+        
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
@@ -84,6 +106,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
+from src import filters
 from src.blueprints.LoginTabs.routes import Login
 from src.blueprints.InfoTabs.routes import Info
 
