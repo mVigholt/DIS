@@ -1,0 +1,7 @@
+h1, h2 {
+    margin-bottom: var(--margin-md);
+}
+
+h2 {
+    margin-top: var(--margin-lg);
+}
