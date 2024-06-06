@@ -12,6 +12,7 @@ def init():
         password=os.getenv('DB_PASSWORD')
     )
     
+    
     conn1.autocommit = True  # Enable autocommit mode for database creation
     cur = conn1.cursor()
     # Check if the 'DB_NAME' database exists
