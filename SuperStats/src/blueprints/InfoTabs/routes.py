@@ -6,7 +6,7 @@ from src.models import Match , MatchInfo , DeleteMatchInfo
 from src.queries import insert_manager , insert_match , insert_match_info,\
      get_player_by_name, get_club_by_name , delete_match_by_id , update_club_stats , update_player_stats, get_all_clubs_sorted_by_points
 
-Info = Blueprint('Produce', __name__)
+Info = Blueprint('Info', __name__)
 
 class PrimaryKeyGenerator:
     def __init__(self):

@@ -2,7 +2,7 @@
 {% from 'components/macros.html' import select_field, search_club_form, club_card %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/produce.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
 {% endblock %}
 
 {% block title %}
@@ -15,7 +15,7 @@
         Search for a club by name
     </h3>
     {{ search_club_form(form=form) }}
-    <div class="produce">
+    <div class="info">
         {% if clubs|length %}
             {% for club in clubs %}
                 {{ club_card(club=club) }}

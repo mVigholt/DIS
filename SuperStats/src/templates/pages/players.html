@@ -2,7 +2,7 @@
 {% from 'components/macros.html' import select_field, search_player_form, player_card %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/produce.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
 {% endblock %}
 
 {% block title %}
@@ -15,7 +15,7 @@
         Search for a player by name
     </h3>
     {{ search_player_form(form=form) }}
-    <div class="produce">
+    <div class="info">
         {% if players|length %}
             {% for player in players %}
                 {{ player_card(player=player) }}

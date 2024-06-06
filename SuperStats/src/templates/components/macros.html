@@ -1,5 +1,5 @@
 {% macro cta_button (class='') %}
-    <a class="btn {{ class }}" href="{{ url_for('Produce.players') }}">
+    <a class="btn {{ class }}" href="{{ url_for('Info.players') }}">
         <span>
             <img src="{{ url_for('static', filename='images/icons/soccerball.svg') }}" alt="cart" class="icon">
             Explore now!
@@ -27,7 +27,7 @@
             {% endif %}
 
             {{ form.submit(class="btn") }}
-            <a href="{{ url_for('Produce.players') }}" class="btn">Clear</a>
+            <a href="{{ url_for('Info.players') }}" class="btn">Clear</a>
         </div>
     </form>
 {% endmacro %}
@@ -61,7 +61,7 @@
             {% endif %}
 
             {{ form.submit(class="btn") }}
-            <a href="{{ url_for('Produce.players') }}" class="btn">Clear</a>
+            <a href="{{ url_for('Info.players') }}" class="btn">Clear</a>
         </div>
     </form>
 {% endmacro %}
