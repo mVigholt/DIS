@@ -40,13 +40,13 @@ def init():
         conn2.commit()
         
         # Load Players.csv into database
-        with open('dataset/Players.csv', 'r') as f:
+        with open('dataset/Players.csv', 'r', encoding="utf8") as f:
             next(f)  # Skip the header row.
-            cur.copy_from(f, 'players', sep=';', columns=('shirt_number', 'club_name', 'player_name', 'nationality', 'goals'))
+            cursor.copy_from(f, 'players', sep=';', columns=('shirt_number', 'club_name', 'player_name', 'nationality', 'goals'))
         conn2.commit()
         
         # Load Clubs.csv into database
-        with open('dataset/Clubs.csv', 'r') as f:
+        with open('dataset/Clubs.csv', 'r', encoding="utf8") as f:
             next(f)
             cursor.copy_from(f, 'clubs', sep=';', columns=('club_name', 'manager_name', 'games_played', 'wins', 'draws', 'losses', 'points', 'goals_scored', 'goals_conceded', 'goal_difference'))
         conn2.commit()
