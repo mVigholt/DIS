@@ -18,6 +18,12 @@ def insert_manager(manager: Manager):
     VALUES (%s, %s, %s, %s)
     """
     db_cursor.execute(sql, (manager.user_name, manager.full_name, manager.password, manager.club_name))
+    sql2 = """
+    UPDATE Clubs
+    SET manager_name = %s
+    WHERE club_name = %s
+    """
+    db_cursor.execute(sql2, (manager.full_name , manager.club_name))
     conn.commit()
 
 def delete_match_by_id(deletematchinfo: DeleteMatchInfo):
@@ -34,6 +40,35 @@ def delete_match_by_id(deletematchinfo: DeleteMatchInfo):
 
     conn.commit()
 
+def get_all_clubs_sorted_by_points():
+    sql2 = """
+    UPDATE Clubs
+    SET manager_name = '-'
+    WHERE manager_name = 'NULL'
+    """
+    
+    db_cursor.execute(sql2)
+    
+    
+    sql = """
+    SELECT 
+        club_name, 
+        manager_name,
+        games_played, 
+        wins, 
+        draws, 
+        losses, 
+        points, 
+        goals_scored, 
+        goals_conceded, 
+        goals_scored - goals_conceded AS goal_difference
+    FROM Clubs
+    ORDER BY points DESC, goal_difference DESC
+    """
+    db_cursor.execute(sql)
+    
+    clubs = db_cursor.fetchall()
+    return clubs
 
 
 def insert_match(match: Match):

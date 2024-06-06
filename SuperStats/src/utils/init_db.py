@@ -33,20 +33,27 @@ def init():
         user=os.getenv('DB_USERNAME'),
         password=os.getenv('DB_PASSWORD')
     )
-    
-    with conn2.cursor() as cursor:
-        cursor.execute(open('utils/schema.sql',"r").read())
-        
-        # Load Players.csv into database
-        with open('dataset/Players.csv', 'r', encoding="utf8") as f:
-            next(f)  # Skip the header row.
-            cursor.copy_from(f, 'players', sep=';', columns=('shirt_number', 'club_name', 'player_name', 'nationality', 'goals'))
-        
-        # Load Clubs.csv into database
-        with open('dataset/Clubs.csv', 'r', encoding="utf8") as f:
-            next(f)
-            cursor.copy_from(f, 'clubs', sep=';', columns=('club_name', 'manager_name', 'games_played', 'wins', 'draws', 'losses', 'points', 'goals_scored', 'goals_conceded', 'goal_difference'))
-        
-    conn2.commit()
-    cursor.close()
-    conn2.close()
+    with conn.cursor() as cur:
+        # Run users.sql
+        with open('users.sql') as db_file:
+            cur.execute(db_file.read())
+        # Run produce.sql
+        with open('produce.sql') as db_file:
+            cur.execute(db_file.read())
+
+        # Import all produce from the dataset
+        all_produce = list(
+            map(lambda x: tuple(x),
+                df[['category', 'item', 'unit', 'variety', 'price']].to_records(index=False))
+        )
+        args_str = ','.join(cur.mogrify("(%s, %s, %s, %s, %s)", i).decode('utf-8') for i in all_produce)
+        cur.execute("INSERT INTO Produce (category, item, unit, variety, price) VALUES " + args_str)
+
+        # Dummy farmer 1 sells all produce
+        dummy_sales = [(1, i) for i in range(1, len(all_produce) + 1)]
+        args_str = ','.join(cur.mogrify("(%s, %s)", i).decode('utf-8') for i in dummy_sales)
+        cur.execute("INSERT INTO Sell (manager_pk, produce_pk) VALUES " + args_str)
+
+        conn.commit()
+
+    conn.close()

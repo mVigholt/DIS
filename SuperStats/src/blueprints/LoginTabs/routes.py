@@ -52,7 +52,8 @@ def signup():
         if form.validate_on_submit():
             user_data = dict(full_name=form.full_name.data,
                              user_name=form.user_name.data,
-                             password=form.password.data)
+                             password=form.password.data,
+                             club_name =form.club_name.data )
             
             manager = Manager(user_data)
             insert_manager(manager)
