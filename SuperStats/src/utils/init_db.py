@@ -34,23 +34,19 @@ def init():
     )
     
     with conn2.cursor() as cursor:
-        # cursor.execute(open('utils/users.sql',"r").read())
-        # cursor.execute(open('utils/produce.sql',"r").read())
         cursor.execute(open('utils/schema.sql',"r").read())
-        conn2.commit()
         
         # Load Players.csv into database
         with open('dataset/Players.csv', 'r', encoding="utf8") as f:
             next(f)  # Skip the header row.
             cursor.copy_from(f, 'players', sep=';', columns=('shirt_number', 'club_name', 'player_name', 'nationality', 'goals'))
-        conn2.commit()
         
         # Load Clubs.csv into database
         with open('dataset/Clubs.csv', 'r', encoding="utf8") as f:
             next(f)
             cursor.copy_from(f, 'clubs', sep=';', columns=('club_name', 'manager_name', 'games_played', 'wins', 'draws', 'losses', 'points', 'goals_scored', 'goals_conceded', 'goal_difference'))
-        conn2.commit()
-    
+        
+    conn2.commit()
     cursor.close()
     conn2.close()
 
