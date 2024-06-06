@@ -52,20 +52,6 @@ class UserSignupForm(FlaskForm):
         if not self.password.data == self.password_repeat.data:
             raise ValidationError(f'Provided passwords do not match.')
 
-
-#class FilterProduceForm(FlaskForm):
-#    category = SelectField('Category',
-#                           choices=ProduceCategoryChoices.choices())
-#    item = SelectField('Item',
-#                       choices=ProduceItemChoices.choices())
-#    variety = SelectField('Variety',
-#                          choices=ProduceVarietyChoices.choices())
-#    sold_by = StringField('Sold by')
-#    price = FloatField('Price (lower than or equal to)',
-#                       validators=[NumberRange(min=0, max=100)])
-#
-#    submit = SubmitField('Filter')
-
 class SearchPlayerForm(FlaskForm):
     player_name = StringField('Player name')
 
@@ -100,15 +86,3 @@ class AddMatchInfoForm(FlaskForm):
 class DeleteMatchForm(FlaskForm):
     match_id = IntegerField('Match ID', validators=[DataRequired()])
     submit = SubmitField('Delete Match')
-
-class BuyProduceForm(FlaskForm):
-    submit = SubmitField('Yes, buy it')
-
-    def validate_submit(self, field):
-        customer = get_customer_by_pk(current_user.pk)
-        if not customer:
-            raise ValidationError("You must be a customer in order to create orders.")
-
-
-class RestockProduceForm(FlaskForm):
-    submit = SubmitField('Yes, restock it')

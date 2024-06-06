@@ -71,29 +71,6 @@ class DeleteMatchInfo(ModelMixin):
         super(DeleteMatchInfo, self).__init__()
         self.match_id = match_id
 
-if __name__ == '__main__':
-    user_data = dict(full_name='a', user_name='b', password='c')
-    user = Manager(user_data)
-    print(user)
-
-
-
-
-class Produce(ModelMixin):
-    def __init__(self, produce_data: Dict):
-        super(Produce, self).__init__(produce_data)
-        self.pk = produce_data.get('pk')
-        self.category = produce_data.get('category')
-        self.item = produce_data.get('item')
-        self.unit = produce_data.get('unit')
-        self.variety = produce_data.get('variety')
-        self.price = produce_data.get('price')
-        # From JOIN w/ Sell relation
-        self.available = produce_data.get('available')
-        self.farmer_name = produce_data.get('farmer_name')
-        self.farmer_pk = produce_data.get('farmer_pk')
-
-
 class Players(ModelMixin):
     def __init__(self, player_data: Dict):
         super(Players, self).__init__(player_data)
@@ -118,18 +95,4 @@ class Clubs(ModelMixin):
         self.goal_difference = club_data.get('goal_difference')
 
 
-class Sell(ModelMixin):
-    def __init__(self, sell_data: Dict):
-        super(Sell, self).__init__(sell_data)
-        self.available = sell_data.get('available')
-        self.manager_pk = sell_data.get('manager_pk')
-        self.produce_pk = sell_data.get('produce_pk')
 
-
-class ProduceOrder(ModelMixin):
-    def __init__(self, produce_order_data: Dict):
-        super(ProduceOrder, self).__init__(produce_order_data)
-        self.pk = produce_order_data.get('pk')
-        self.customer_pk = produce_order_data.get('customer_pk')
-        self.farmer_pk = produce_order_data.get('farmer_pk')
-        self.produce_pk = produce_order_data.get('produce_pk')

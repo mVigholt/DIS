@@ -2,10 +2,9 @@ from flask import render_template, request, Blueprint , flash , redirect
 from flask_login import login_required, current_user
 
 from src.forms import AddMatchInfoForm, ManagerLoginForm, UserSignupForm, SearchPlayerForm, SearchClubForm , DeleteMatchForm
-from src.models import Produce as ProduceModel, ProduceOrder , Match , MatchInfo , DeleteMatchInfo
-from src.queries import insert_produce, get_produce_by_pk, Sell, insert_manager , insert_match , insert_match_info,\
-    insert_sell, get_all_produce_by_manager, get_produce_by_filters, insert_produce_order, update_sell, \
-    get_orders_by_customer_pk, get_player_by_name, get_club_by_name , delete_match_by_id , update_club_stats , update_player_stats, get_all_clubs_sorted_by_points
+from src.models import Match , MatchInfo , DeleteMatchInfo
+from src.queries import insert_manager , insert_match , insert_match_info,\
+     get_player_by_name, get_club_by_name , delete_match_by_id , update_club_stats , update_player_stats, get_all_clubs_sorted_by_points
 
 Info = Blueprint('Produce', __name__)
 
@@ -92,9 +91,6 @@ def add_match_info():
             #return redirect('pages/add-match-info.html')
 
     return render_template('pages/add-match-info.html', form=form)
-
-
-
 
 
 @Info.route("/delete-match", methods=['GET', 'POST'])
