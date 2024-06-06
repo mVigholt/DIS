@@ -1,16 +1,93 @@
 import os
+
 import psycopg2
+from dotenv import load_dotenv
 from flask import Flask
 from flask_login import LoginManager
 from psycopg2.extras import RealDictCursor
-import src.utils.init_db as db
-#from dotenv import load_dotenv
-#load_dotenv()
+
+load_dotenv()
 
 init = os.getenv('DB_INIT')
 yes = ['1', 'true', 'True', 'TRUE', 'y', 'Y','yes', 'Yes', 'YES']
 if init in yes:
-    db.init()
+    # ---------------------------------------------------------------
+    # Create Database
+    # ---------------------------------------------------------------
+    conn1 = psycopg2.connect(
+        host="localhost",
+        database=os.getenv('DB_USERNAME'),
+        user=os.getenv('DB_USERNAME'),
+        password=os.getenv('DB_PASSWORD')
+    )
+    
+    conn1.autocommit = True  # Enable autocommit mode for database creation
+    cur = conn1.cursor()
+    # Check if the 'DB_NAME' database exists
+    cur.execute("SELECT 1 FROM pg_catalog.pg_database WHERE datname = '{}'".format(os.getenv('DB_NAME')))
+    exists = cur.fetchone()
+    # If the database does not exist, create it
+    if not exists:
+        cur.execute('CREATE DATABASE "{}"'.format(os.getenv('DB_NAME')))
+    cur.close()
+    conn1.close()
+    
+    # ---------------------------------------------------------------
+    # Run database schema
+    # ---------------------------------------------------------------
+    conn2 = psycopg2.connect(
+        host="localhost",
+        database=os.getenv('DB_NAME'),
+        user=os.getenv('DB_USERNAME'),
+        password=os.getenv('DB_PASSWORD')
+    )
+    
+    with conn2.cursor() as cursor:
+        cursor.execute(open('utils/users.sql',"r").read())
+        cursor.execute(open('utils/produce.sql',"r").read())
+    cursor.close()
+    conn2.commit()
+    conn2.close()
+
+    # ---------------------------------------------------------------
+    # Load Players.csv into database
+    # ---------------------------------------------------------------
+    conn3 = psycopg2.connect(
+        host="localhost",
+        database=os.getenv('DB_NAME'),
+        user=os.getenv('DB_USERNAME'),
+        password=os.getenv('DB_PASSWORD')
+    )
+    cur = conn3.cursor()
+
+    with open('dataset/Players.csv', 'r') as f:
+        next(f)  # Skip the header row.
+        cur.copy_from(f, 'players', sep=';', columns=('shirt_number', 'club_name', 'player_name', 'nationality', 'goals'))
+
+    conn3.commit()
+    cur.close()
+    conn3.close()
+
+    # ---------------------------------------------------------------
+    # Load Clubs.csv into database
+    # Schema is club_name;managername;gamesplayed;wins;draws;losses;points;goalsscored;goalsconceded;goaldifference
+    # ---------------------------------------------------------------
+
+    conn4 = psycopg2.connect(
+        host="localhost",
+        database=os.getenv('DB_NAME'),
+        user=os.getenv('DB_USERNAME'),
+        password=os.getenv('DB_PASSWORD')
+    )
+    cur = conn4.cursor()
+
+    with open('dataset/Clubs.csv', 'r') as f:
+        next(f)
+        cur.copy_from(f, 'clubs', sep=';', columns=('club_name', 'manager_name', 'games_played', 'wins', 'draws', 'losses', 'points', 'goals_scored', 'goals_conceded', 'goal_difference'))
+
+    conn4.commit()
+    cur.close()
+    conn4.close()
         
 
 app = Flask(__name__)

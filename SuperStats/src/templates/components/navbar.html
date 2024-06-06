@@ -4,6 +4,7 @@
             <a href="{{ url_for("Login.home") }}">Home</a>
             <a href="{{ url_for("Produce.players") }}">Player info</a>
             <a href="{{ url_for("Produce.clubs") }}">Club info</a>
+            <a href="{{ url_for("Produce.league_table") }}">League Table</a>
             {% if current_user.is_authenticated %}
             <a href="{{ url_for("Produce.add_match_info") }}">Add match info</a>
             <a href="{{ url_for("Produce.delete_match") }}">Delete match</a>

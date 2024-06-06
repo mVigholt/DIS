@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Club Standings{% endblock %}
+
+{% block content %}
+<section class="table-wrapper">
+    <h1>Club Standings</h1>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Club Name</th>
+                <th>Manager Name</th>
+                <th>Games Played</th>
+                <th>Wins</th>
+                <th>Draws</th>
+                <th>Losses</th>
+                <th>Goals Scored</th>
+                <th>Goals Conceded</th>
+                <th>Goal Difference</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for club in clubs %}
+            <tr>
+                <td>{{ club.club_name }}</td>
+                <td>{{ club.manager_name }}</td>
+                <td>{{ club.games_played }}</td>
+                <td>{{ club.wins }}</td>
+                <td>{{ club.draws }}</td>
+                <td>{{ club.losses }}</td>
+                <td>{{ club.goals_scored }}</td>
+                <td>{{ club.goals_conceded }}</td>
+                <td>{{ club.goal_difference }}</td>
+                <td>{{ club.points }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<style>
+.table-wrapper {
+    padding: 20px;
+    margin: auto;
+    width: 90%;
+    max-width: 1000px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table th {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+
+.styled-table tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.styled-table td {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+</style>
+{% endblock %}

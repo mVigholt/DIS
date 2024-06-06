@@ -5,7 +5,7 @@ from src.forms import AddMatchInfoForm, ManagerLoginForm, UserSignupForm, Search
 from src.models import Produce as ProduceModel, ProduceOrder , Match , MatchInfo , DeleteMatchInfo
 from src.queries import insert_produce, get_produce_by_pk, Sell, insert_manager , insert_match , insert_match_info,\
     insert_sell, get_all_produce_by_manager, get_produce_by_filters, insert_produce_order, update_sell, \
-    get_orders_by_customer_pk, get_player_by_name, get_club_by_name , delete_match_by_id , update_club_stats , update_player_stats
+    get_orders_by_customer_pk, get_player_by_name, get_club_by_name , delete_match_by_id , update_club_stats , update_player_stats, get_all_clubs_sorted_by_points
 
 Info = Blueprint('Produce', __name__)
 
@@ -28,6 +28,13 @@ def players():
         players = get_player_by_name(player_name=request.form.get('player_name'))
         title = f'Searching for playes...!'
     return render_template('pages/players.html', players=players, form=form, title=title)
+
+
+@Info.route("/league-table", methods=['GET', 'POST'])
+def league_table():
+    clubs = get_all_clubs_sorted_by_points()
+    return render_template('pages/league-table.html', clubs=clubs)
+
 
 @Info.route("/clubs", methods=['GET', 'POST'])
 def clubs():
@@ -86,6 +93,10 @@ def add_match_info():
 
     return render_template('pages/add-match-info.html', form=form)
 
+
+
+
+
 @Info.route("/delete-match", methods=['GET', 'POST'])
 @login_required
 def delete_match():
@@ -105,4 +116,5 @@ def delete_match():
 
 
     return render_template('pages/delete-match.html', form=form)
+
 
