@@ -1,7 +1,7 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField, SelectField, FloatField, FieldList, FormField
-from wtforms.validators import DataRequired, Length, ValidationError, NumberRange
+from wtforms.validators import DataRequired, Length, ValidationError, NumberRange, Regexp
 
 from src.queries import get_user_by_user_name, get_manager_by_pk, get_customer_by_pk
 from src.utils.choices import ClubChoices, PlayerChoices 
@@ -30,7 +30,7 @@ class UserSignupForm(FlaskForm):
                             validators=[DataRequired(), Length(min=2, max=50)],
                             render_kw=dict(placeholder='Full name'))
     user_name = StringField('Username',
-                            validators=[DataRequired(), Length(min=2, max=50)],
+                            validators=[DataRequired(), Length(min=2, max=50), Regexp('^[\w\.-]+@[\w\.-]+\.\w+$', message='Invalid email format')],
                             render_kw=dict(placeholder='Username'))
     password = PasswordField('Password',
                              validators=[DataRequired()],
