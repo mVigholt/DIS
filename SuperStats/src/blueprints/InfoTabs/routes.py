@@ -10,7 +10,7 @@ Info = Blueprint('Info', __name__)
 
 class PrimaryKeyGenerator:
     def __init__(self):
-        self.last_pk = 0
+        self.last_pk = 36
     
     def generate_unique_pk(self):
         self.last_pk += 1
