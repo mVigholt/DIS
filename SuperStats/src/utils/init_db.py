@@ -47,6 +47,16 @@ def init():
             next(f)
             cursor.copy_from(f, 'clubs', sep=';', columns=('club_name', 'manager_name', 'games_played', 'wins', 'draws', 'losses', 'points', 'goals_scored', 'goals_conceded', 'goal_difference'))
         
+         # Load Matches.csv into database
+        with open('dataset/Matches.csv', 'r', encoding="utf8") as f:
+            next(f)  # Skip the header row.
+            cursor.copy_from(f, 'matches', sep=';', columns=('match_id', 'home_team_name', 'away_team_name', 'home_team_goals', 'away_team_goals'))
+            
+        with open('dataset/Matchinfo.csv', 'r', encoding="utf8") as f:
+            next(f)  # Skip the header row.
+            cursor.copy_from(f, 'matchinfo', sep=';', columns=('match_id', 'shirt_number', 'club_name', 'goals_scored'))
+        
+        
     conn2.commit()
     cursor.close()
     conn2.close()

@@ -91,83 +91,124 @@ def insert_match_info(match_info: MatchInfo):
     conn.commit()
 
 def update_club_stats():
-    # Reset club stats to zero
-    reset_sql = """
-    UPDATE Clubs
+    # Update Games Played
+    sql_games_played = """
+    UPDATE Clubs AS c
     SET 
-        games_played = 0,
-        wins = 0,
-        draws = 0,
-        losses = 0,
-        points = 0,
-        goals_scored = 0,
-        goals_conceded = 0,
-        goal_difference = 0
+        games_played = (
+            SELECT COUNT(*) 
+            FROM Matches 
+            WHERE c.club_name = Matches.home_team_name OR c.club_name = Matches.away_team_name
+        )
     """
-    db_cursor.execute(reset_sql)
-
-    # Update home team stats
-    sql_home = """
-    UPDATE Clubs
+    db_cursor.execute(sql_games_played)
+    
+    # Update Wins
+    sql_wins = """
+    UPDATE Clubs AS c
     SET 
-        games_played = games_played + 1,
-        wins = wins + CASE
-            WHEN Matches.home_team_goals > Matches.away_team_goals THEN 1
-            ELSE 0
-        END,
-        draws = draws + CASE
-            WHEN Matches.home_team_goals = Matches.away_team_goals THEN 1
-            ELSE 0
-        END,
-        losses = losses + CASE
-            WHEN Matches.home_team_goals < Matches.away_team_goals THEN 1
-            ELSE 0
-        END,
-        points = points + CASE
-            WHEN Matches.home_team_goals > Matches.away_team_goals THEN 3
-            WHEN Matches.home_team_goals = Matches.away_team_goals THEN 1
-            ELSE 0
-        END,
-        goals_scored = goals_scored + Matches.home_team_goals,
-        goals_conceded = goals_conceded + Matches.away_team_goals,
-        goal_difference = (goals_scored + Matches.home_team_goals) - (goals_conceded + Matches.away_team_goals)
-    FROM Matches
-    WHERE Clubs.club_name = Matches.home_team_name
+        wins = (
+            SELECT COUNT(*) 
+            FROM Matches 
+            WHERE c.club_name = Matches.home_team_name AND Matches.home_team_goals > Matches.away_team_goals
+        )
+        + (
+            SELECT COUNT(*) 
+            FROM Matches 
+            WHERE c.club_name = Matches.away_team_name AND Matches.away_team_goals > Matches.home_team_goals
+        )
     """
-    db_cursor.execute(sql_home)
-
-    # Update away team stats
-    sql_away = """
-    UPDATE Clubs
+    db_cursor.execute(sql_wins)
+    
+    # Update Draws
+    sql_draws = """
+    UPDATE Clubs AS c
     SET 
-        games_played = games_played + 1,
-        wins = wins + CASE
-            WHEN Matches.away_team_goals > Matches.home_team_goals THEN 1
-            ELSE 0
-        END,
-        draws = draws + CASE
-            WHEN Matches.away_team_goals = Matches.home_team_goals THEN 1
-            ELSE 0
-        END,
-        losses = losses + CASE
-            WHEN Matches.away_team_goals < Matches.home_team_goals THEN 1
-            ELSE 0
-        END,
-        points = points + CASE
-            WHEN Matches.away_team_goals > Matches.home_team_goals THEN 3
-            WHEN Matches.away_team_goals = Matches.home_team_goals THEN 1
-            ELSE 0
-        END,
-        goals_scored = goals_scored + Matches.away_team_goals,
-        goals_conceded = goals_conceded + Matches.home_team_goals,
-        goal_difference = (goals_scored + Matches.away_team_goals) - (goals_conceded + Matches.home_team_goals)
-    FROM Matches
-    WHERE Clubs.club_name = Matches.away_team_name
+        draws = (
+            SELECT COUNT(*) 
+            FROM Matches 
+            WHERE c.club_name = Matches.home_team_name AND Matches.home_team_goals = Matches.away_team_goals
+        )
+        + (
+            SELECT COUNT(*) 
+            FROM Matches 
+            WHERE c.club_name = Matches.away_team_name AND Matches.away_team_goals = Matches.home_team_goals
+        )
     """
-    db_cursor.execute(sql_away)
+    db_cursor.execute(sql_draws)
+    
+    # Update Losses
+    sql_losses = """
+    UPDATE Clubs AS c
+    SET 
+        losses = (
+            SELECT COUNT(*) 
+            FROM Matches 
+            WHERE c.club_name = Matches.home_team_name AND Matches.home_team_goals < Matches.away_team_goals
+        )
+        + (
+            SELECT COUNT(*) 
+            FROM Matches 
+            WHERE c.club_name = Matches.away_team_name AND Matches.away_team_goals < Matches.home_team_goals
+        )
+    """
+    db_cursor.execute(sql_losses)
+    
+    # Update Goals Scored
+    sql_goals_scored = """
+    UPDATE Clubs AS c
+    SET 
+        goals_scored = (
+            SELECT SUM(home_team_goals) 
+            FROM Matches 
+            WHERE c.club_name = Matches.home_team_name
+        )
+        + (
+            SELECT SUM(away_team_goals) 
+            FROM Matches 
+            WHERE c.club_name = Matches.away_team_name
+        )
+    """
+    db_cursor.execute(sql_goals_scored)
+    
+    # Update Goals Conceded
+    sql_goals_conceded = """
+    UPDATE Clubs AS c
+    SET 
+        goals_conceded = (
+            SELECT SUM(away_team_goals) 
+            FROM Matches 
+            WHERE c.club_name = Matches.home_team_name
+        )
+        + (
+            SELECT SUM(home_team_goals) 
+            FROM Matches 
+            WHERE c.club_name = Matches.away_team_name
+        )
+    """
+    db_cursor.execute(sql_goals_conceded)
+    
+    # Update Goal Difference
+    sql_goal_difference = """
+    UPDATE Clubs AS c
+    SET 
+        goal_difference = goals_scored - goals_conceded
+    """
+    db_cursor.execute(sql_goal_difference)
+    
+    # Update Points
+    sql_points = """
+    UPDATE Clubs AS c
+    SET 
+        points = 3 * wins + draws
+    """
+    db_cursor.execute(sql_points)
 
     # Commit the changes
     conn.commit()
+
+
+
 
 
 

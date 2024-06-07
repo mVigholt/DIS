@@ -20,6 +20,7 @@ pkg = PrimaryKeyGenerator()
 
 @Info.route("/players", methods=['GET', 'POST'])
 def players():
+    update_player_stats()
     form = SearchPlayerForm()
     title = 'Player info'
     players = []
@@ -31,6 +32,7 @@ def players():
 
 @Info.route("/league-table", methods=['GET', 'POST'])
 def league_table():
+    update_club_stats()
     clubs = get_all_clubs_sorted_by_points()
     return render_template('pages/league-table.html', clubs=clubs)
 

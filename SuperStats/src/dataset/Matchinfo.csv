@@ -1,6 +1,57 @@
-Match_Id;Goalscorer_name;Shirtnumber
-1;Peter Ankersen;22
-1;Victor Claesson;7
-1;Andreas Schjelderup;8
-1;Kian Hansen;4
-1;Jordan Larsson;11
+match_id;shirt_number;club_name;goals_scored
+1;11;FC København;2
+1;22;Viborg FF;1
+2;31;FC Midtjylland;3
+2;9;OB;1
+3;7;FC Nordsjælland;1
+3;11;Randers FC;2
+5;14;Brøndby IF;2
+5;17;Vejle BK;2
+6;11;AGF;3
+7;17;Brøndby IF;2
+7;11;Randers FC;1
+8;14;Silkeborg IF;1
+8;17;AGF;1
+9;27;FC Nordsjælland;2
+10;10;Viborg FF;1
+10;50;FC Midtjylland;1
+11;12;Vejle BK;1
+11;1;FC København;1
+12;9;OB;2
+13;5;FC Midtjylland;2
+13;9;Hvidovre IF;2
+14;18;Vejle BK;1
+14;19;Viborg FF;1
+15;1;FC København;2
+15;11;Randers FC;1
+16;14;Brøndby IF;1
+17;9;FC Nordsjælland;2
+17;15;AGF;1
+18;9;OB;1
+18;14;Silkeborg IF;1
+19;16;Vejle BK;1
+19;10;FC Midtjylland;2
+20;24;Silkeborg IF;2
+21;11;Viborg FF;1
+21;9;Randers FC;1
+22;6;AGF;2
+22;7;Brøndby IF;2
+23;12;Lyngby;1
+24;13;FC Nordsjælland;2
+25;2;FC København;2
+26;10;FC Midtjylland;3
+26;25;Silkeborg IF;1
+27;9;FC Nordsjælland;2
+28;8;Brøndby IF;2
+29;20;Lyngby;2
+30;9;Vejle BK;1
+30;7;Randers FC;2
+31;50;FC Midtjylland;1
+32;9;OB;2
+33;6;AGF;2
+33;19;Viborg FF;1
+34;19;Vejle BK;1
+34;6;Lyngby;1
+35;18;Brøndby IF;2
+36;14;Silkeborg IF;1
+36;9;FC Nordsjælland;2
