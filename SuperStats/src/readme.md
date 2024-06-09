@@ -1,13 +1,13 @@
 # SuperStats - Supersuperliga statistics
 
 ## Group members:
-  1. Jakob Langergaard Greibe
+1. Jakob Langergaard Greibe
     1. KU-ID: pgr799
     1. Absalon Project Group 81
-  1. Martin Vigholt Nyholm-Andersen
+1. Martin Vigholt Nyholm-Andersen
     1. KU-ID: zwc822
     1. Absalon Project Group 82
-  1. Thomas Stenbæk Jauho
+1. Thomas Stenbæk Jauho
     1. KU-ID: gtp600
     1. Absalon Project Group 81
   
@@ -17,11 +17,11 @@ https://github.com/mVigholt/DIS.git
 
 
 ## Conforming to requirements ✔
-  1. Public git repository
-  1. E/R diagram in Superstats/diagram
-  1. How to Initiate, compile, run and interact with webpage in readme.md
-  1. SQL INSERT/UPDATE/DELETE/SELECT statements used for database interaction
-  1. Regular expression matching used at signup (username should be a mail)
+1. Public git repository
+1. E/R diagram in Superstats/diagram
+1. How to Initiate, compile, run and interact with webpage in readme.md
+1. SQL INSERT/UPDATE/DELETE/SELECT statements used for database interaction
+1. Regular expression matching used at signup (username should be a mail)
 
 
 ## Initialization ✔
@@ -35,8 +35,8 @@ https://github.com/mVigholt/DIS.git
     1. Navigate to SuperStats/src folder
     1. pip install -r requirements.txt
     1. Run program with or without specifying host and port: 
-      1. flask run 
-      1. flask run -h localhost -p 5000
+        1. flask run 
+        1. flask run -h localhost -p 5000
 
 
 ## Folder setup 📁
