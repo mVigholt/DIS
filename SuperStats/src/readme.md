@@ -1,6 +1,20 @@
 # SuperStats - Supersuperliga statistics
 
+## Group members:
+  1. Jakob Langergaard Greibe
+    1. KU-ID: pgr799
+    1. Absalon Project Group 81
+  1. Martin Vigholt Nyholm-Andersen
+    1. KU-ID: zwc822
+    1. Absalon Project Group 82
+  1. Thomas Stenbæk Jauho
+    1. KU-ID: gtp600
+    1. Absalon Project Group 81
+  
+
+## Git repo:
 https://github.com/mVigholt/DIS.git
+
 
 ## Conforming to requirements ✔
   1. Public git repository
@@ -11,7 +25,6 @@ https://github.com/mVigholt/DIS.git
 
 
 ## Initialization ✔
-
 1. In folder SuperStats/src:
     1. copy and rename file "RenameTo___.env___.txt" to ".env" to create .env file.
     1. In .env file:
@@ -27,7 +40,6 @@ https://github.com/mVigholt/DIS.git
 
 
 ## Folder setup 📁
-
 The app is divided into multiple folders similar to the structure of the example project, with a few tweaks:
 
 - __blueprints__: Contains all the separate blueprints of the app (submodules of the app the store different parts of the functionality)
@@ -38,7 +50,6 @@ The app is divided into multiple folders similar to the structure of the example
 
 
 ### At the root folder of the app (./src) six more scripts are present with the following roles:
-
 - __\_\_init\_\_.py__: Initializes the flask app and creates a connection to the database (and a cursor object for future queries)
 - __app.py__: Runs the app created by \_\_init__.py
 - __filters.py__: Implements custom template filters for nicer formatting of data in the frontend
@@ -47,7 +58,6 @@ The app is divided into multiple folders similar to the structure of the example
 - __queries.py__: Implements functions for each needed query to the database used inside the app (similar to the functional part of the models.py file within the example project)
 
 ## Routes 📌
-
 Both implemented blueprints come with a __routes.py__ file that initialize a __Blueprint__ object and define _routes_ for the app.
 
 - __LoginTabs__:
